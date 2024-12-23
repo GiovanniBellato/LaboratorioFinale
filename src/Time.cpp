@@ -87,3 +87,18 @@ Time Time::operator - (Time* time){
         new_time.hour = hour;
     return new_time;
 }
+
+Time& Time::operator = (const Time& time){
+    hour = time->hour;
+    minute = time->minute;
+    return *this;
+}
+
+bool Time::operator == (Time* time){
+    if(hour != time->hour)
+        return false;
+    if(minute != time->minute)
+        return false;
+    return true;
+}
+
