@@ -1,3 +1,0 @@
-/Users/renatozanolla/Documents/GitHub/LaboratorioFinale/cmake-build-debug/CMakeFiles/ProgettoFinale.dir
-/Users/renatozanolla/Documents/GitHub/LaboratorioFinale/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/renatozanolla/Documents/GitHub/LaboratorioFinale/cmake-build-debug/CMakeFiles/rebuild_cache.dir
