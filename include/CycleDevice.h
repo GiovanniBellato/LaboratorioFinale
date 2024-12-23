@@ -12,7 +12,7 @@ private:
     int id; //identificativo unico.
     float power;    //consumo (o produzione) energetico.
     bool isOn;  //stato del dispositivo.
-    optional<pair<int, int>> timer;   //orario di accensione/spegnimento.
+    Time timer;   //orario di accensione/spegnimento.
     float energyConsumed;   //consumo energetico totale
     int cycleDuration;    //Durata del ciclo in minuti.
 
