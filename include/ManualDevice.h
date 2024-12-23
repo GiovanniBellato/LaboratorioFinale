@@ -19,8 +19,8 @@ private:
 public:
     virtual void turnOn();  //accende il dispositivo.
     virtual void turnOff(); //spegne il dispositivo.
-    virtual void update(int currentTime);   //aggiorna lo stato del dispositivo.
-    void updateEnergy(int minutesElapsed);   //aggiorna il consumo energetico accumulato da un dispositivo
+    virtual void update(Time currentTime);   //aggiorna lo stato del dispositivo.
+    void updateEnergy(Time currentTime);   //aggiorna il consumo energetico accumulato da un dispositivo
     void setTimer(Time time);
 };
 

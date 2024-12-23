@@ -19,8 +19,8 @@ private:
 protected:
     virtual void turnOn();  //accende il dispositivo.
     virtual void turnOff(); //spegne il dispositivo.
-    virtual void update(Time currenTime);   //aggiorna lo stato del dispositivo.
-    void updateEnergy(Time currenTime);   //aggiorna il consumo energetico accumulato da un dispositivo
+    virtual void update(Time currentTime);   //aggiorna lo stato del dispositivo.
+    void updateEnergy(Time currentTime);   //aggiorna il consumo energetico accumulato da un dispositivo
 };
 
 #endif
