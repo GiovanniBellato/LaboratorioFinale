@@ -21,7 +21,7 @@ public:
     virtual void turnOff(); //spegne il dispositivo.
     virtual void update(int currentTime);   //aggiorna lo stato del dispositivo.
     void updateEnergy(int minutesElapsed);   //aggiorna il consumo energetico accumulato da un dispositivo
-    void startCycle(int currentTime);    //Avvia il ciclo.
+    void setTimer(Time time);    //Avvia il ciclo.
 };
 
 #endif
