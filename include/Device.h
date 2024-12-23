@@ -3,10 +3,6 @@
 
 #include<string>
 
-#include "CycleDevice.h"
-#include "DomoticSystem.h"
-#include "ManualDevice.h"
-
 using namespace std;
 
 class Device{
