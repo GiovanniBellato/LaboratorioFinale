@@ -2,6 +2,7 @@
 #define TIME_H_
 
 #include<stdexcept>
+#include <iostream>
 
 class Time{
 private:
