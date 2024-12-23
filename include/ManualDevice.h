@@ -1,0 +1,28 @@
+#ifndef MANUALDEVICE_H_
+#define MANUALDEVICE_H_
+
+#include "Device.h"
+
+using namespace std;
+
+class ManualDevice:public Device{
+private:
+    string name;    //nome del dispositivo.
+    int id; //identificativo unico.
+    float power;    //consumo (o produzione) energetico.
+    bool isOn;  //stato del dispositivo.
+    Time timer_on;   //orario di accensione/spegnimento.
+    Time timer_off;
+    
+    float energyConsumed;   //consumo energetico totale
+
+public:
+    virtual void turnOn();  //accende il dispositivo.
+    virtual void turnOff(); //spegne il dispositivo.
+    virtual void update(Time currentTime);   //aggiorna lo stato del dispositivo.
+    void updateEnergy(Time currentTime                   );   //aggiorna il consumo energetico accumulato da un dispositivo
+    void setTimer(Time time);
+};
+
+#endif
+
