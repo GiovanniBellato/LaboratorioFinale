@@ -1,28 +1,18 @@
-#ifndef DEVICE_H_
-#define DEVICE_H_
+#ifndef TIME_H
+#define TIME_H
 
-#include "Time.h"
-
-#include <vector>
-#include <string>
-
-using namespace std;
-
-class Device{
+class Time{
 private:
-    string name;    //nome del dispositivo.
-    int id; //identificativo unico.
-    float power;    //consumo (o produzione) energetico.
-    bool isOn;  //stato del dispositivo.
-    optional<pair<int, int>> timer;   //orario di accensione/spegnimento.
-    float energyConsumed;   //consumo energetico totale
-
-protected:
-    virtual void turnOn();  //accende il dispositivo.
-    virtual void turnOff(); //spegne il dispositivo.
-    virtual void update(int currentTime);   //aggiorna lo stato del dispositivo.
-    void updateEnergy(int minutesElapsed);   //aggiorna il consumo energetico accumulato da un dispositivo
+    int hour;
+    int minute;
+public:
+    Time(int hour, int minute);
+    Time getTime();
+    void setTime(int hour, int minute);
+    bool operator > (Time* time);
+    bool operator >= (Time* time);
+    bool operator < (Time* time);
+    bool operator <= (Time* time);
 };
 
 #endif
-
