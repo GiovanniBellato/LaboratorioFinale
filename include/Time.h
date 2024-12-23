@@ -1,5 +1,5 @@
-#ifndef TIME_H
-#define TIME_H
+#ifndef TIME_H_
+#define TIME_H_
 
 #include<stdexcept>
 
@@ -15,10 +15,11 @@ public:
     bool operator >= (Time* time);
     bool operator < (Time* time);
     bool operator <= (Time* time);
-    Time operator + (Time* time);
-    Time operator - (Time* time);
+    Time operator+(const Time& time) const;
+    Time operator-(const Time& time) const;
     Time& operator = (Time& time);
     bool operator == (Time* time);
+    void display();
 };
 
 #endif
