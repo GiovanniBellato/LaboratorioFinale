@@ -1,5 +1,4 @@
 #include "Time.h"
-#include<stdexcept>
 
 void Time::display(){
 	std::cout << "  " << hour <<":"<<minute<<"  ";
