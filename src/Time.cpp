@@ -1,4 +1,5 @@
 #include "Time.h"
+#include<stdexcept>
 
 Time::Time(int hour, int minute){
     if(!(hour>=0 &&hour<24 && minute>=0 && minute<60))
@@ -61,7 +62,7 @@ bool Time::operator <= (Time* time) {
 }
 
 Time Time::operator + (Time* time){
-    Time new_time;
+    Time new_time(0,0);
     new_time.hour = hour + time->hour;
     if(minute + time->minute > 60){
         new_time.hour ++;
@@ -76,21 +77,21 @@ Time Time::operator + (Time* time){
 }
 
 Time Time::operator - (Time* time){
-    Time new_time;
+    Time new_time(0,0);
     new_time.hour = hour - time->hour;
     new_time.minute = minute - time->minute;
     if(new_time.minute < 0){
         new_time.hour --;
         new_time.minute += 60;
     }
-    if(time.hour < 0)
+    if(time->hour < 0)
         new_time.hour = hour;
     return new_time;
 }
 
-Time& Time::operator = (const Time& time){
-    hour = time->hour;
-    minute = time->minute;
+Time& Time::operator = (Time& time){
+    hour = time.hour;
+    minute = time.minute;
     return *this;
 }
 
@@ -101,4 +102,3 @@ bool Time::operator == (Time* time){
         return false;
     return true;
 }
-
