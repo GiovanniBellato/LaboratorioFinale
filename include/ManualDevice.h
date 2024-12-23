@@ -9,19 +9,22 @@ class ManualDevice:public Device{
 private:
     string name;    //nome del dispositivo.
     int id; //identificativo unico.
-    float power;    //consumo (o produzione) energetico.
+    const float power;    //consumo (o produzione) energetico.
+    float total_power; //consumo totale energetico
     bool isOn;  //stato del dispositivo.
     Time timer_on;   //orario di accensione/spegnimento.
+    bool timer;
     Time timer_off;
-    
-    float energyConsumed;   //consumo energetico totale
+    Time start;
+    Time end;
 
 public:
-    virtual void turnOn();  //accende il dispositivo.
-    virtual void turnOff(); //spegne il dispositivo.
-    virtual void update(Time currentTime);   //aggiorna lo stato del dispositivo.
-    void updateEnergy(Time currentTime);   //aggiorna il consumo energetico accumulato da un dispositivo
-    void setTimer(Time time);
+    ManualDevice(float devicePower);
+    void turnOn(Time time);  //accende il dispositivo.
+    void turnOff(Time time); //spegne il dispositivo.
+    void update(Time current_time);   //aggiorna lo stato del dispositivo.
+    void setTimerOn(Time time);
+    void setTimerOff(Time time);
 };
 
 #endif
