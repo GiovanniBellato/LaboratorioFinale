@@ -1,6 +1,8 @@
 #ifndef TIME_H
 #define TIME_H
 
+#include<stdexcept>
+
 class Time{
 private:
     int hour;
