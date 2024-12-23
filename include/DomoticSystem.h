@@ -15,16 +15,16 @@ class DomoticSystem{
 		std::vector<Device*> devices;
 		constexpr float MaxPower;
 		float photovoltaicPower;
-		int currentTime;
+		Time currentTime;
 		std::vector<std::string> logs;
 
 	public:
 		//GESTIONE DISPOSITIVI
 		void addDevice(Device* device);
-		Device* getDeviceByName(const std::string& name);
+		Device* getDeviceByID(const std::string& id);
 
 		//GESTIONE TEMPO
-		void setTime(int newTime);
+		void setTime(Time time);
 		void resetTime();
 
 		//DEBUG
