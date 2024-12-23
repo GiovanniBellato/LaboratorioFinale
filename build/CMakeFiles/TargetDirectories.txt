@@ -1,0 +1,3 @@
+/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/build/CMakeFiles/ProgettoFinale.dir
+/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/build/CMakeFiles/edit_cache.dir
+/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/build/CMakeFiles/rebuild_cache.dir

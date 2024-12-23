@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/build",
+  "command": "/usr/bin/clang++  -I/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/include -g -std=gnu++17 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -mmacosx-version-min=15.1 -o CMakeFiles/ProgettoFinale.dir/src/main.cpp.o -c /Users/giovanni/coding/universita_programmazione/LaboratorioFinale/src/main.cpp",
+  "file": "/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/src/main.cpp",
+  "output": "CMakeFiles/ProgettoFinale.dir/src/main.cpp.o"
+},
+{
+  "directory": "/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/build",
+  "command": "/usr/bin/clang++  -I/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/include -g -std=gnu++17 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -mmacosx-version-min=15.1 -o CMakeFiles/ProgettoFinale.dir/src/CycleDevice.cpp.o -c /Users/giovanni/coding/universita_programmazione/LaboratorioFinale/src/CycleDevice.cpp",
+  "file": "/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/src/CycleDevice.cpp",
+  "output": "CMakeFiles/ProgettoFinale.dir/src/CycleDevice.cpp.o"
+},
+{
+  "directory": "/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/build",
+  "command": "/usr/bin/clang++  -I/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/include -g -std=gnu++17 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -mmacosx-version-min=15.1 -o CMakeFiles/ProgettoFinale.dir/src/Device.cpp.o -c /Users/giovanni/coding/universita_programmazione/LaboratorioFinale/src/Device.cpp",
+  "file": "/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/src/Device.cpp",
+  "output": "CMakeFiles/ProgettoFinale.dir/src/Device.cpp.o"
+},
+{
+  "directory": "/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/build",
+  "command": "/usr/bin/clang++  -I/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/include -g -std=gnu++17 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -mmacosx-version-min=15.1 -o CMakeFiles/ProgettoFinale.dir/src/DomoticSystem.cpp.o -c /Users/giovanni/coding/universita_programmazione/LaboratorioFinale/src/DomoticSystem.cpp",
+  "file": "/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/src/DomoticSystem.cpp",
+  "output": "CMakeFiles/ProgettoFinale.dir/src/DomoticSystem.cpp.o"
+},
+{
+  "directory": "/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/build",
+  "command": "/usr/bin/clang++  -I/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/include -g -std=gnu++17 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -mmacosx-version-min=15.1 -o CMakeFiles/ProgettoFinale.dir/src/ManualDevice.cpp.o -c /Users/giovanni/coding/universita_programmazione/LaboratorioFinale/src/ManualDevice.cpp",
+  "file": "/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/src/ManualDevice.cpp",
+  "output": "CMakeFiles/ProgettoFinale.dir/src/ManualDevice.cpp.o"
+}
+]
