@@ -1,6 +1,9 @@
 #ifndef CYCLEDEVICE_H_
 #define CYCLEDEVICE_H_
 
+#include<string>
+#include "Device.h"
+
 using namespace std;
 
 class CycleDevice:public Device{
