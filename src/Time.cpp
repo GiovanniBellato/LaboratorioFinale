@@ -1,5 +1,8 @@
 #include "Time.h"
-#include<stdexcept>
+
+void Time::display(){
+	std::cout << "  " << hour <<":"<<minute<<"  ";
+}
 
 Time::Time(int hour, int minute){
     if(!(hour>=0 &&hour<24 && minute>=0 && minute<60))
@@ -61,32 +64,34 @@ bool Time::operator <= (Time* time) {
     return false;
 }
 
-Time Time::operator + (Time* time){
-    Time new_time(0,0);
-    new_time.hour = hour + time->hour;
-    if(minute + time->minute > 60){
-        new_time.hour ++;
-        new_time.minute = (minute + time->minute) - 60;
+Time Time::operator+(const Time& time) const{
+    int hour_t = hour + time.hour;
+    int minute_t = 0;
+    if(minute + time.minute > 60){
+        hour_t++;
+        minute_t = (minute + time.minute) - 60;
     }
     else{
-        new_time.minute = minute + time->minute;
+        minute_t = (minute + time.minute);
     }
-    if(new_time.hour > 23)
+    if(hour_t > 23)
         throw std::invalid_argument("Time is out of range");
-    return new_time;
+    return Time(hour_t, minute_t);
 }
 
-Time Time::operator - (Time* time){
-    Time new_time(0,0);
-    new_time.hour = hour - time->hour;
-    new_time.minute = minute - time->minute;
-    if(new_time.minute < 0){
-        new_time.hour --;
-        new_time.minute += 60;
+Time Time::operator-(const Time& time) const{
+    int hour_t, minute_t;
+    hour_t = hour - time.hour;
+    minute_t = minute - time.minute;
+    if(minute_t < 0){
+        hour_t --;
+        minute_t += 60;
     }
-    if(time->hour < 0)
-        new_time.hour = hour;
-    return new_time;
+    if(hour_t < 0){
+        hour_t = hour;
+        minute_t = minute;
+    }
+    return Time(hour_t, minute_t);
 }
 
 Time& Time::operator = (Time& time){
@@ -102,3 +107,4 @@ bool Time::operator == (Time* time){
         return false;
     return true;
 }
+
