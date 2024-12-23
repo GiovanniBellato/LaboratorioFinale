@@ -1,10 +1,6 @@
 #ifndef DEVICE_H_
 #define DEVICE_H_
 
-#include "CycleDevice.h"
-#include "DomoticSystem.h"
-#include "ManualDevice.h"
-
 using namespace std;
 
 class Device{
