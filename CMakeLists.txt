@@ -13,7 +13,7 @@ set(SOURCES
     src/Device.cpp
     src/DomoticSystem.cpp
     src/ManualDevice.cpp
-        src/Time.cpp
+    src/Time.cpp
 )
 
 add_executable(ProgettoFinale ${SOURCES})
