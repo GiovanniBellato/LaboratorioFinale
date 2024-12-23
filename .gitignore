@@ -54,3 +54,6 @@ build/.cmake/api/v1/reply/cmakeFiles-v1-639b2068d40f42466e06.json
 build/.cmake/api/v1/reply/cache-v2-883a88d44b1499578a17.json
 build/.cmake/api/v1/reply/cache-v2-06aeae61ecb2d6dadfb3.json
 .DS_Store
+cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-2df050770765443bd7a3.json
+cmake-build-debug/.cmake/api/v1/reply/index-2024-12-23T15-04-31-0993.json
+include/.idea/workspace.xml
