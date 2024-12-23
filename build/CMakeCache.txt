@@ -145,7 +145,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=MazeRunner
+CMAKE_PROJECT_NAME:STATIC=ProgettoFinale
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION:STATIC=1.0
@@ -235,6 +235,15 @@ MazeRunner_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 MazeRunner_SOURCE_DIR:STATIC=/Users/giovanni/coding/universita_programmazione/LaboratorioFinale
+
+//Value Computed by CMake
+ProgettoFinale_BINARY_DIR:STATIC=/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/build
+
+//Value Computed by CMake
+ProgettoFinale_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+ProgettoFinale_SOURCE_DIR:STATIC=/Users/giovanni/coding/universita_programmazione/LaboratorioFinale
 
 
 ########################
