@@ -1,5 +1,9 @@
 #include "Time.h"
 
+int toHour(){
+	return (hour + (minutes/60));
+}
+
 void Time::display(){
 	std::cout << "  " << hour <<":"<<minute<<"  ";
 }
