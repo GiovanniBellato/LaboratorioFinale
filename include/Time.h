@@ -16,7 +16,9 @@ public:
     bool operator < (Time* time);
     bool operator <= (Time* time);
     Time operator + (Time* time);
-    Time operator - (Time* time)
+    Time operator - (Time* time);
+    Time operator = (Time* time);
+    bool operator == (Time* time);
 };
 
 #endif
