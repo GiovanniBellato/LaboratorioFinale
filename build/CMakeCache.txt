@@ -228,15 +228,6 @@ CMAKE_TAPI:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/tapi
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Value Computed by CMake
-MazeRunner_BINARY_DIR:STATIC=/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/build
-
-//Value Computed by CMake
-MazeRunner_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-MazeRunner_SOURCE_DIR:STATIC=/Users/giovanni/coding/universita_programmazione/LaboratorioFinale
-
-//Value Computed by CMake
 ProgettoFinale_BINARY_DIR:STATIC=/Users/giovanni/coding/universita_programmazione/LaboratorioFinale/build
 
 //Value Computed by CMake
