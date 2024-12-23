@@ -2,7 +2,8 @@
 #define DEVICE_H_
 
 #include "Time.h"
-#include<string>
+
+#include <string>
 
 using namespace std;
 
@@ -12,10 +13,10 @@ private:
     int id; //identificativo unico.
     float power;    //consumo (o produzione) energetico.
     bool isOn;  //stato del dispositivo.
-    optional<pair<int, int>> timer;   //orario di accensione/spegnimento.
+    Time timer;   //orario di accensione/spegnimento.
     float energyConsumed;   //consumo energetico totale
 
-public:
+protected:
     virtual void turnOn();  //accende il dispositivo.
     virtual void turnOff(); //spegne il dispositivo.
     virtual void update(int currentTime);   //aggiorna lo stato del dispositivo.
