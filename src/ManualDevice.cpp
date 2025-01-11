@@ -21,8 +21,7 @@ ManualDevice::ManualDevice(float devicePower){
 }
 
 void ManualDevice::turnOn(Time current_time){  //accende il dispositivo.
-    if(isOn == true) true;
-    else{
+    if(isOn != true){
     start = current_time;
     isOn = true;
     std::cout << "[";
