@@ -1,5 +1,10 @@
 #include "../include/Time.h"
 
+Time::Time(){
+	hour = 0;
+	minute = 0;
+}
+
 int Time::toHour(){
 	return (hour + (minute/60));
 }
