@@ -9,6 +9,7 @@ private:
     int hour;
     int minute;
 public:
+    Time();
     Time(int hour, int minute);
     Time getTime();
     void setTime(int hour, int minute);
