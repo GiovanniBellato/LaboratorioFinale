@@ -11,7 +11,7 @@ private:
     float total_power; //consumo totale energetico
     bool isOn = false;  //stato del dispositivo.
     Time timer_on;
-    bool timer;
+    bool timer = false;
     Time timer_off;
     Time start;
     Time end;
