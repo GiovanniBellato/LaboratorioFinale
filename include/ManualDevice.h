@@ -25,6 +25,7 @@ public:
     void update(Time current_time);   //aggiorna lo stato del dispositivo.
     void setTimerOn(Time time);
     void setTimerOff(Time time);
+    void CancTimer();
 };
 
 #endif
