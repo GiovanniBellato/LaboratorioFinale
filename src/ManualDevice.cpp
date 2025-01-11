@@ -1,4 +1,4 @@
-#include "ManualDevice.h"
+#include "../include/ManualDevice.h"
 
 using namespace std;
 

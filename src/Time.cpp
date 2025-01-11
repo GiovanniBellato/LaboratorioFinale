@@ -1,4 +1,4 @@
-#include "Time.h"
+#include "../include/Time.h"
 
 int toHour(){
 	return (hour + (minutes/60));
