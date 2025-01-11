@@ -31,14 +31,15 @@ void ManualDevice::turnOn(Time current_time){  //accende il dispositivo.
 }
 
 void ManualDevice::turnOff(Time current_time){ //spegne il dispositivo.
-	if(isOn != false){
+	if(isOn == true){
     end = current_time;
     Time delta = end - start;
     total_power += power * delta.toHour();
     isOn = false;
-    std::cout << "[";
+    	std::cout << "[";
         current_time.display();
         std::cout << "] Il dispositivo <" << name << "> si è spento.";
+    timer = false;
 	}
 }
 
@@ -48,8 +49,8 @@ void ManualDevice::update(Time current_time){   //aggiorna lo stato del disposit
     if(current_time >= timer_on)
         turnOn(timer_on);
     if(current_time >= timer_off){
-        turnOn(timer_off);
-        timer = false;
+        turnOff(timer_off);
+
     }
 }
 
