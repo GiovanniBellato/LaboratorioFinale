@@ -9,10 +9,10 @@ class CycleDevice : public Device {
 private:
     string name;    //nome del dispositivo.
     int id; //identificativo unico.
-    const float power;    //consumo (o produzione) energetico.
+    float power;    //consumo (o produzione) energetico.
     bool isOn = false;  //stato del dispositivo.
     Time start;         // Orario di accensione
-    const Time duration; // Durata prefissata del ciclo
+    Time duration; // Durata prefissata del ciclo
     float total_power = 0;   // Consumo totale energetico
     Time timer_on;
     bool timer = false;
