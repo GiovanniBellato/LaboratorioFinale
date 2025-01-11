@@ -2,10 +2,11 @@
 #define MANUALDEVICE_H_
 
 #include "Device.h"
+#include <string>
 
 class ManualDevice:public Device{
 private:
-    string name;    //nome del dispositivo.
+    std::string name;    //nome del dispositivo.
     int id; //identificativo unico.
     float power;    //consumo (o produzione) energetico.
     float total_power; //consumo totale energetico
