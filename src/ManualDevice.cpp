@@ -63,3 +63,7 @@ void ManualDevice::setTimerOff(Time time){
     timer_off = time;
     timer = true;
 }
+
+void ManualDevice::CancTimer(){
+	timer = false;
+}
