@@ -24,6 +24,7 @@ public:
     void setTimerOn(Time, Time);
     void setTimerOff(Time, Time);
     void CancTimer(Time);
+    void reset();
 };
 
 #endif
