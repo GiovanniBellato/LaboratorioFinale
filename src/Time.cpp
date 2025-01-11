@@ -1,5 +1,6 @@
 #include "../include/Time.h"
 
+
 Time::Time(){
 	hour = 0;
 	minute = 0;
@@ -10,7 +11,7 @@ int Time::toHour(){
 }
 
 void Time::display(){
-	std::cout << "  " << hour <<":"<<minute<<"  ";
+	std::cout << hour <<":"<<minute;
 }
 
 Time::Time(int hour, int minute){
@@ -33,42 +34,42 @@ void Time::setTime(int hour, int minute) {
     this -> minute = minute;
 }
 
-bool Time::operator > (Time* time) {
-    if(hour > time->hour)
+bool Time::operator > (Time time) {
+    if(hour > time.hour)
         return true;
-    if(hour < time->hour)
+    if(hour < time.hour)
         return false;
-    if(minute > time->minute)
+    if(minute > time.minute)
+    	return true;
+    return false;
+}
+
+bool Time::operator >= (Time time) {
+    if(hour > time.hour)
+        return true;
+    if(hour < time.hour)
+        return false;
+    if(minute >= time.minute)
         return true;
     return false;
 }
 
-bool Time::operator >= (Time* time) {
-    if(hour > time->hour)
-        return true;
-    if(hour < time->hour)
+bool Time::operator < (Time time) {
+    if(hour > time.hour)
         return false;
-    if(minute >= time->minute)
+    if(hour < time.hour)
+        return true;
+    if(minute < time.minute)
         return true;
     return false;
 }
 
-bool Time::operator < (Time* time) {
-    if(hour > time->hour)
+bool Time::operator <= (Time time) {
+    if(hour > time.hour)
         return false;
-    if(hour < time->hour)
+    if(hour < time.hour)
         return true;
-    if(minute < time->minute)
-        return true;
-    return false;
-}
-
-bool Time::operator <= (Time* time) {
-    if(hour > time->hour)
-        return false;
-    if(hour < time->hour)
-        return true;
-    if(minute <= time->minute)
+    if(minute <= time.minute)
         return true;
     return false;
 }
@@ -116,3 +117,6 @@ bool Time::operator == (Time* time){
         return false;
     return true;
 }
+
+
+
