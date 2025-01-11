@@ -20,6 +20,7 @@ private:
 public:
     CycleDevice(float devicePower);
     void turnOn(Time current_time);  //accende il dispositivo.
+    void turnOff(Time current_time);  //spegne il dispositivo.
     void update(Time current_time);  // Aggiorna lo stato del dispositivo
     void setTimerOn(Time time);
     void reset();
