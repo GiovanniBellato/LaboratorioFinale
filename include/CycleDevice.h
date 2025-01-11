@@ -1,28 +1,28 @@
-#ifndef CYCLEDEVICE_H_
-#define CYCLEDEVICE_H_
+#ifndef CYCLE_DEVICE_H
+#define CYCLE_DEVICE_H
 
-#include<string>
 #include "Device.h"
 
 using namespace std;
 
-class CycleDevice:public Device{
+class CycleDevice : public Device {
 private:
     string name;    //nome del dispositivo.
     int id; //identificativo unico.
-    float power;    //consumo (o produzione) energetico.
-    bool isOn;  //stato del dispositivo.
-    Time timer_on;   //orario di accensione/spegnimento.
-    float energyConsumed;   //consumo energetico totale
-    int cycleDuration;    //Durata del ciclo in minuti.
+    const float power;    //consumo (o produzione) energetico.
+    bool isOn = false;  //stato del dispositivo.
+    Time start;         // Orario di accensione
+    const Time duration; // Durata prefissata del ciclo
+    float total_power = 0;   // Consumo totale energetico
+    Time timer_on;
+    bool timer = false;
 
 public:
-    virtual void turnOn();  //accende il dispositivo.
-    virtual void turnOff(); //spegne il dispositivo.
-    virtual void update(Time currentTime);   //aggiorna lo stato del dispositivo.
-    void updateEnergy(Time currentTime);   //aggiorna il consumo energetico accumulato da un dispositivo
-    void setTimer(Time time);    //Avvia il ciclo.
+    CycleDevice(float devicePower);
+    void turnOn(Time current_time);  //accende il dispositivo.
+    void update(Time current_time);  // Aggiorna lo stato del dispositivo
+    void setTimerOn(Time time);
+    void reset();
 };
 
 #endif
-
