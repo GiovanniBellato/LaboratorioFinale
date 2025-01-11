@@ -1,7 +1,7 @@
 #include "../include/Time.h"
 
-int toHour(){
-	return (hour + (minutes/60));
+int Time::toHour(){
+	return (hour + (minute/60));
 }
 
 void Time::display(){
@@ -111,4 +111,3 @@ bool Time::operator == (Time* time){
         return false;
     return true;
 }
-
