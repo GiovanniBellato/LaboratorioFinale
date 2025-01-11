@@ -9,10 +9,10 @@ class ManualDevice:public Device{
 private:
     string name;    //nome del dispositivo.
     int id; //identificativo unico.
-    const float power;    //consumo (o produzione) energetico.
+    float power;    //consumo (o produzione) energetico.
     float total_power; //consumo totale energetico
     bool isOn;  //stato del dispositivo.
-    Time timer_on;   //orario di accensione/spegnimento.
+    Time timer_on;
     bool timer;
     Time timer_off;
     Time start;
@@ -28,4 +28,3 @@ public:
 };
 
 #endif
-
