@@ -88,3 +88,9 @@ void ManualDevice::CancTimer(Time time){
 	std::cout<< "] Rimosso il timer dal dispositivo <" << name << ">" ;
 
 }
+
+void ManualDevice::reset(){
+	timer = false;
+	isOn = false;
+	total_power=0;
+}
