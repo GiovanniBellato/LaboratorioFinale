@@ -2,7 +2,6 @@
 #define MANUALDEVICE_H_
 
 #include "Device.h"
-#include <string>
 
 class ManualDevice:public Device{
 private:
