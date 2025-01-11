@@ -31,8 +31,7 @@ void ManualDevice::turnOn(Time current_time){  //accende il dispositivo.
 }
 
 void ManualDevice::turnOff(Time current_time){ //spegne il dispositivo.
-	if(isOn == false) true;
-	else{
+	if(isOn != false){
     end = current_time;
     Time delta = end - start;
     total_power += power * delta.toHour();
