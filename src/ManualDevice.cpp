@@ -6,7 +6,7 @@
     string name;    //nome del dispositivo.
     int id; //identificativo unico.
     float power;    //consumo (o produzione) energetico.
-    float total_power; //consumo totale energetico
+    float total_power = 0; //consumo totale energetico
     bool isOn;  //stato del dispositivo.
     Time timer_on;   //orario di accensione/spegnimento.
     bool timer;
