@@ -118,5 +118,13 @@ bool Time::operator == (Time* time){
     return true;
 }
 
+Time toTime(std::string timeString)
+{
+    int hours = std::stoi(timeString.substr(0, 2));  // Estrai HH
+    int minutes = std::stoi(timeString.substr(3, 2));  // Estrai MM
 
+    Time temp(hours, minutes);
+    return temp;
+}
 
+ 

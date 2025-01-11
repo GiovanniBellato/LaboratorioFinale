@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.10)
 
 project(ProgettoFinale VERSION 1.0)
 
-include_directories(${CMAKE_SOURCE_DIR}/include) 
+set (MYDIR $PWD)
+
+include_directories($MYDIR) 
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -14,6 +16,7 @@ set(SOURCES
     src/DomoticSystem.cpp
     src/ManualDevice.cpp
     src/Time.cpp
+    src/Interface.cpp
 )
 
 add_executable(ProgettoFinale ${SOURCES})

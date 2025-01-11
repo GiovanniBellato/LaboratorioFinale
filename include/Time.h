@@ -24,6 +24,7 @@ public:
     bool operator == (Time* time);
     void display();
     int toHour();
+    Time toTime(std::string timeString);
 };
 
 
