@@ -27,6 +27,19 @@ void CycleDevice::turnOn(Time current_time){  //accende il dispositivo.
     }
 }
 
+void CycleDevice::turnOff(Time current_time){  //spegne il dispositivo.
+    if(isOn){
+        isOn = false;
+        Time delta = current_time - start;
+        total_power += (power * delta.toHour());
+        if(timer && current_time >= timer_on)
+            timer = false;
+        std::cout << "[";
+        current_time.display();
+        std::cout << "] Il dispositivo <" << name << "> si è spento.";
+    }
+}
+
 void CycleDevice::update(Time current_time){  // Aggiorna lo stato del dispositivo
     if(timer && current_time >= timer_on){
         isOn = true;
