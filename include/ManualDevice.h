@@ -3,8 +3,6 @@
 
 #include "Device.h"
 
-using namespace std;
-
 class ManualDevice:public Device{
 private:
     string name;    //nome del dispositivo.
@@ -13,7 +11,7 @@ private:
     float total_power; //consumo totale energetico
     bool isOn = false;  //stato del dispositivo.
     Time timer_on;
-    bool timer = false;
+    bool timer;
     Time timer_off;
     Time start;
     Time end;
@@ -23,9 +21,9 @@ public:
     void turnOn(Time time);  //accende il dispositivo.
     void turnOff(Time time); //spegne il dispositivo.
     void update(Time current_time);   //aggiorna lo stato del dispositivo.
-    void setTimerOn(Time time);
-    void setTimerOff(Time time);
-    void CancTimer();
+    void setTimerOn(Time, Time);
+    void setTimerOff(Time, Time);
+    void CancTimer(Time);
 };
 
 #endif
