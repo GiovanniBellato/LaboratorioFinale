@@ -15,6 +15,7 @@
 
 void CycleDevice::turnOn(Time current_time){  //accende il dispositivo.
     if(!isOn){
+    	started = true;
         start = current_time;
         isOn = true;
         std::cout << "[";
@@ -70,3 +71,13 @@ void CycleDevice::removeTimer(Time current_time){
 }
 
 void CycleDevice::setTimerOff(Time start, Time end) {}
+
+float CycleDevice::getConsumption(Time current_time){
+	if(started){
+	Time endx = current_time;
+	Time delta = endx - start;
+	float total_power = power * delta.toHour();
+	return total_power;
+	}
+	else return 0;
+}
