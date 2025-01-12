@@ -1,28 +1,14 @@
 #include "../include/ManualDevice.h"
 #include <iostream>
 
-/*
-
-    string name;    //nome del dispositivo.
-    int id; //identificativo unico.
-    float power;    //consumo (o produzione) energetico.
-    float total_power; //consumo totale energetico
-    bool isOn;  //stato del dispositivo.
-    Time timer_on;   //orario di accensione/spegnimento.
-    bool timer;
-    Time timer_off;
-
-    Time start; //orario di accensione
-    Time end;   //orario di spegnimento
-*/
-
 void ManualDevice::turnOn(Time current_time){  //accende il dispositivo.
     if(!isOn){
+    started = true;
     start = current_time;
     isOn = true;
     std::cout << "[";
     current_time.display();
-    std::cout << "] Il dispositivo <" << name << "> si è spento.";
+    std::cout << "] Il dispositivo <" << name << "> si è acceso." << std::endl;
     }
 }
 
@@ -35,15 +21,16 @@ void ManualDevice::turnOff(Time current_time){ //spegne il dispositivo.
     timer = false;
     std::cout << "[";
     current_time.display();
-    std::cout << "] Il dispositivo <" << name << "> si è spento.";
+    std::cout << "] Il dispositivo <" << name << "> si è spento." <<std::endl;
     }
 }
 
 void ManualDevice::update(Time current_time){   //aggiorna lo stato del dispositivo.
     if(!timer)
         return;
-    if(current_time >= timer_on)
+    if(current_time >= timer_on){
         turnOn(timer_on);
+    }
     if(current_time >= timer_off){
         turnOff(timer_off);
     }
@@ -52,14 +39,16 @@ void ManualDevice::update(Time current_time){   //aggiorna lo stato del disposit
 void ManualDevice::setTimerOn(Time current_time, Time time){
     if(current_time <= time){
     timer_on = time;
+    Time t_off(23,59);
+    timer_off = t_off;
     timer = true;
     std::cout << "[";
         current_time.display();
         std::cout<< "] Impostato un timer di accesione nel dispositivo <" << name << ">"<<" alle <";
         time.display();
-        std::cout << ">";
+        std::cout << ">" <<std::endl;
     }else{
-        std::cout<< "WARNING: Timer di accensione già scaduto (prova con orario successivo)";
+        std::cout<< "WARNING: Timer di accensione già scaduto (prova con orario successivo)"<<std::endl;
     }
 }
 
@@ -71,9 +60,9 @@ void ManualDevice::setTimerOff(Time current_time, Time time){
             current_time.display();
             std::cout<< "] Impostato un timer di spegnimento nel dispositivo <" << name << ">"<<" alle <";
             time.display();
-            std::cout << ">";
+            std::cout << ">" << std::endl;
     }else{
-        std::cout<< "WARNING: Timer di spegnimento già scaduto (prova con orario successivo)";
+        std::cout<< "WARNING: Timer di spegnimento già scaduto (prova con orario successivo)" <<std::endl;
     }
 }
 
@@ -81,7 +70,7 @@ void ManualDevice::removeTimer(Time current_time){
     timer = false;
     std::cout << "[";
     current_time.display();
-    std::cout<< "] Rimosso il timer dal dispositivo <" << name << ">" ;
+    std::cout<< "] Rimosso il timer dal dispositivo <" << name << ">" <<std::endl ;
 
 }
 
@@ -91,3 +80,12 @@ void ManualDevice::reset(){
     total_power=0;
 }
 
+float ManualDevice::getConsumption(Time current_time){
+	if(started){
+	Time endx = current_time;
+	Time delta = endx - start;
+	float total_power = power * delta.toHour();
+	return total_power;
+	}
+	else return 0;
+}
