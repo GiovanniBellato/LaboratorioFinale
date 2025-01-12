@@ -1,4 +1,10 @@
+#ifndef DEVICE_H_
+#define DEVICE_H_
+
+#include "Time.h"
+
 #include <string>
+
 
 class Device{
 private:
