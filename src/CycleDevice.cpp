@@ -13,10 +13,6 @@
  bool timer = false;
  */
 
-CycleDevice::CycleDevice(float devicePower){
-    power = devicePower;
-}
-
 void CycleDevice::turnOn(Time current_time){  //accende il dispositivo.
     if(!isOn){
         start = current_time;
@@ -41,25 +37,22 @@ void CycleDevice::turnOff(Time current_time){  //spegne il dispositivo.
 }
 
 void CycleDevice::update(Time current_time){  // Aggiorna lo stato del dispositivo
-    if(timer && current_time >= timer_on){
-        isOn = true;
-        start = timer_on;
-        timer = false;
-    }
-    if(isOn){
-        if(current_time >= start + duration){
-            isOn = false;
-            std::cout << "[";
-            current_time.display();
-            std::cout << "] Il dispositivo <" << name << "> si è spento.";
-        }
+    if(timer && current_time >= timer_on)
+        turnOn(timer_on);
+    if(isOn)
         total_power += (power * duration.toHour());
-    }
+    if(current_time >= start + duration)
+        turnOff(start + duration);
 }
 
-void CycleDevice::setTimerOn(Time time){
+void CycleDevice::setTimerOn(Time current_time, Time time){
     timer_on = time;
     timer = true;
+    std::cout << "[";
+    current_time.display();
+    std::cout<< "] Impostato un timer di accesione nel dispositivo <" << name << ">"<<" alle <";
+    time.display();
+    std::cout << ">";
 }
 
 void CycleDevice::reset(){
@@ -68,3 +61,12 @@ void CycleDevice::reset(){
     total_power=0;
 }
 
+void CycleDevice::removeTimer(Time current_time){
+    timer = false;
+    std::cout << "[";
+    current_time.display();
+    std::cout<< "] Rimosso il timer dal dispositivo <" << name << ">" ;
+
+}
+
+void CycleDevice::setTimerOff(Time start, Time end) {}
