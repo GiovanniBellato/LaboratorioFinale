@@ -28,6 +28,7 @@ public:
     bool operator == (const Time& time) const;
     void display() const;
     float toHour() const;
+    Time toTime(std::string timeString);
 };
 
 
