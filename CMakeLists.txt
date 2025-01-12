@@ -12,7 +12,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(SOURCES
     src/main.cpp
     src/CycleDevice.cpp
-    src/Device.cpp
     src/DomoticSystem.cpp
     src/ManualDevice.cpp
     src/Time.cpp
