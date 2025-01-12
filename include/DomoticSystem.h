@@ -27,6 +27,9 @@ private:
 public:
     // Costruttore
     DomoticSystem(float maxPower);
+    
+    //Metodo per mostrare l'orario corrente
+    void showTime();
 
     // Metodo per accendere un dispositivo
     void turnOnDevice(const std::string& deviceName);
