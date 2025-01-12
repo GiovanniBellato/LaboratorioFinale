@@ -20,6 +20,16 @@ DomoticSystem::DomoticSystem(float maxPower)
     devices.push_back(std::make_shared<CycleDevice>("Televisore", 9, 0.2, Time(1, 0)));
 }
 
+
+//Stampa a video l'orario corrente
+void DomoticSystem::showTime(){
+    std::cout << "[";
+    currentTime.display();
+    std::cout << "] L’orario attuale è ";
+    currentTime.display();
+    std::cout <<"\n";
+}
+
 // Accende un dispositivo
 void DomoticSystem::turnOnDevice(const std::string& deviceName) {
     for (const std::shared_ptr<Device>& device : devices) {
@@ -43,7 +53,7 @@ void DomoticSystem::turnOffDevice(const std::string& deviceName) {
     }
 }
 
-// Imposta un timer per un dispositivo
+// Imposta un timer per un dispositivo (accensione e spegnimento)
 void DomoticSystem::setTimer(const std::string& deviceName, const Time& start, const Time& end) {
     for (const std::shared_ptr<Device>& device : devices) {
         if (device->getName() == deviceName) {
@@ -53,6 +63,7 @@ void DomoticSystem::setTimer(const std::string& deviceName, const Time& start, c
     }
 }
 
+// Imposta un timer per un dispositivo (solo accensione)
 void DomoticSystem::setTimer(const std::string& deviceName, const Time& start) {
     for (const std::shared_ptr<Device>& device : devices) {
         if (device->getName() == deviceName) {
