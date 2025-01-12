@@ -2,6 +2,7 @@
 #define MANUALDEVICE_H_
 
 #include "Device.h"
+#include <string>
 
 class ManualDevice:public Device{
 private:
@@ -17,14 +18,19 @@ private:
     Time end;
 
 public:
-    ManualDevice(float devicePower);
-    void turnOn(Time time);  //accende il dispositivo.
-    void turnOff(Time time); //spegne il dispositivo.
-    void update(Time current_time);   //aggiorna lo stato del dispositivo.
-    void setTimerOn(Time, Time);
-    void setTimerOff(Time, Time);
-    void CancTimer(Time);
+    ManualDevice(const std::string& name, int id, float power)
+            : name(name), id(id), power(power) {}
+    void turnOn(Time time) override;  //accende il dispositivo.
+    void turnOff(Time time) override; //spegne il dispositivo.
+    void update(Time current_time) override;   //aggiorna lo stato del dispositivo.
+    void setTimerOn(Time, Time) override;
+    void setTimerOff(Time, Time) override;
+    void removeTimer(Time) override;
     void reset();
+    std::string getName() const override {return name;}
+    float getPower() override {return power;}
+    float getConsumption() override {return total_power;}
+
 };
 
 #endif
