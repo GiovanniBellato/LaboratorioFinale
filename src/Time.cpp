@@ -1,25 +1,12 @@
 #include "../include/Time.h"
 
 
-Time::Time(){
-	hour = 0;
-	minute = 0;
+float Time::toHour() const {
+    return (hour + (minute/60));
 }
 
-int Time::toHour(){
-	return (hour + (minute/60));
-}
-
-void Time::display(){
-	std::cout << hour <<":"<<minute;
-}
-
-Time::Time(int hour, int minute){
-    if(!(hour>=0 &&hour<24 && minute>=0 && minute<60))
-        throw std::invalid_argument("Time is out of range");
-
-    this -> hour = hour;
-    this -> minute = minute;
+void Time::display() const {
+    std::cout << hour <<":"<<minute;
 }
 
 Time Time::getTime() {
@@ -34,47 +21,29 @@ void Time::setTime(int hour, int minute) {
     this -> minute = minute;
 }
 
-bool Time::operator > (Time time) {
+bool Time::operator > (const Time& time) const {
     if(hour > time.hour)
         return true;
     if(hour < time.hour)
         return false;
     if(minute > time.minute)
-    	return true;
-    return false;
-}
-
-bool Time::operator >= (Time time) {
-    if(hour > time.hour)
-        return true;
-    if(hour < time.hour)
-        return false;
-    if(minute >= time.minute)
         return true;
     return false;
 }
 
-bool Time::operator < (Time time) {
-    if(hour > time.hour)
-        return false;
-    if(hour < time.hour)
-        return true;
-    if(minute < time.minute)
-        return true;
-    return false;
+bool Time::operator >= (const Time& time) const {
+    return (*this > time || *this == time);
 }
 
-bool Time::operator <= (Time time) {
-    if(hour > time.hour)
-        return false;
-    if(hour < time.hour)
-        return true;
-    if(minute <= time.minute)
-        return true;
-    return false;
+bool Time::operator < (const Time& time) const {
+    return !(*this >= time);
 }
 
-Time Time::operator+(const Time& time) const{
+bool Time::operator <= (const Time& time) const {
+    return !(*this > time);
+}
+
+Time Time::operator + (const Time& time) const{
     int hour_t = hour + time.hour;
     int minute_t = 0;
     if(minute + time.minute > 60){
@@ -89,7 +58,7 @@ Time Time::operator+(const Time& time) const{
     return Time(hour_t, minute_t);
 }
 
-Time Time::operator-(const Time& time) const{
+Time Time::operator - (const Time& time) const{
     int hour_t, minute_t;
     hour_t = hour - time.hour;
     minute_t = minute - time.minute;
@@ -104,19 +73,16 @@ Time Time::operator-(const Time& time) const{
     return Time(hour_t, minute_t);
 }
 
-Time& Time::operator = (Time& time){
+Time& Time::operator = (const Time& time){
     hour = time.hour;
     minute = time.minute;
     return *this;
 }
 
-bool Time::operator == (Time* time){
-    if(hour != time->hour)
-        return false;
-    if(minute != time->minute)
-        return false;
-    return true;
+bool Time::operator == (const Time& time) const{
+    return hour == time.hour && minute == time.minute;
 }
+
 
 Time toTime(std::string timeString)
 {
