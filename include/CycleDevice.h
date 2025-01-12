@@ -15,13 +15,14 @@ private:
     float total_power = 0;   // Consumo totale energetico
     Time timer_on;
     bool timer = false;
+    bool started = false;
 
 public:
     CycleDevice(const std::string& name, int id, float power, Time duration)
             : name(name), id(id), power(power), duration(duration) {}
-    
+
     virtual ~CycleDevice() = default;
-    
+
     void turnOn(Time current_time) override;  //accende il dispositivo.
     void turnOff(Time current_time) override;  //spegne il dispositivo.
     void update(Time current_time) override;  // Aggiorna lo stato del dispositivo
@@ -30,8 +31,8 @@ public:
     void reset();
     std::string getName() const override {return name;}
     float getPower() override {return power;}
-    float getConsumption() override {return total_power;}
-    
+    float getConsumption(Time);
+
     void setTimerOff(Time start, Time end) override;
 };
 
