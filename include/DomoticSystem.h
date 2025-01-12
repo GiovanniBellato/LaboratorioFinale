@@ -12,13 +12,15 @@
 class DomoticSystem {
 private:
     std::vector<std::shared_ptr<Device>> devices; // Lista dei dispositivi
-    std::list<std::shared_ptr<Device>> activeDevices; // Lista FIFO dei dispositivi accesi
+    std::list<std::shared_ptr<Device>> activeDevices; // Lista FIFO dei dispositivi accesi.
     //in quanto lista di gestione della policy di spegnimento in caso di eccesso della potenza limite,
     //essa non conterrà il fotovoltaico.
     const float maxPower = 3.5;    // Limite massimo di potenza dalla rete
     Time currentTime;  // Orario attuale del sistema
     const Time fotovolt_on = Time(8,0); //il fotovoltaico si accende alle 08:00
     const Time fotovolt_off = Time(18,0); //il fotovoltaico si spegne alle 18:00
+    bool ignore_fotovolt = false; //il fotovoltaico può essere spento manualmente
+    //durante il suo normale ciclo di funzionamento
 
     // Metodo per verificare la potenza totale assorbita
     float calculateTotalPower() const;
