@@ -1,5 +1,4 @@
 #include "../include/DomoticSystem.h"
-#include "DomoticSystem.h"
 #include <iostream>
 #include <algorithm> // Per std::find_if
 
