@@ -5,6 +5,11 @@
 // Costruttore
 DomoticSystem::DomoticSystem(float maxPower)
     : maxPower(maxPower), currentTime(0, 0) {
+	Time t1(8,0);
+	fotovolt_on = t1;
+	Time t2(18,0);
+	fotovolt_off = t2;
+	ignore_fotovolt = false;
     // Inizializzazione dei dispositivi dalla tabella del PDF
     devices.push_back(std::make_shared<ManualDevice>("Impianto fotovoltaico", 0, -1.5));
     //Manual devices
@@ -23,11 +28,9 @@ DomoticSystem::DomoticSystem(float maxPower)
 
 //Stampa a video l'orario corrente
 void DomoticSystem::showTime(){
-    std::cout << "[";
+    std::cout << "L’orario attuale è ";
     currentTime.display();
-    std::cout << "] L’orario attuale è ";
-    currentTime.display();
-    std::cout <<"\n";
+    std::cout << std::endl;
 }
 
 // Accende un dispositivo
@@ -38,7 +41,7 @@ void DomoticSystem::turnOnDevice(const std::string& deviceName) {
                 activeDevices.push_back(device); // Aggiungi in coda alla lista
             }
             else if(currentTime < fotovolt_on || currentTime >= fotovolt_off){
-                std::cerr << "Il fotovoltaico non può lavorare in assenza di luce solare.\n";
+                std::cerr << "Il fotovoltaico non può lavorare in assenza di luce solare." <<std::endl;
                 return;
             }
             device->turnOn(currentTime);
@@ -115,7 +118,7 @@ void DomoticSystem::enforcePowerLimit() {
 // Aggiorna lo stato dei dispositivi
 void DomoticSystem::updateDevices() {
     // Gestisci l'impianto fotovoltaico in base all'orario
-    if (currentTime >= fotovolt_on && currentTime < fotovolt_off && !ignore_fotovolt) {
+    if (currentTime >= fotovolt_on && !ignore_fotovolt && currentTime < fotovolt_off) {
         turnOnDevice("Impianto fotovoltaico");
     } else if(currentTime >= fotovolt_off) {
         turnOffDevice("Impianto fotovoltaico");
@@ -130,8 +133,11 @@ void DomoticSystem::updateDevices() {
 // Avanza il tempo
 void DomoticSystem::setTime(Time& newTime) {
     if (newTime > currentTime) {
+    	Time minuto(0,1);
         while (currentTime < newTime) {
-            currentTime = currentTime + Time(0, 1); // Avanza di 1 minuto
+            currentTime = currentTime + minuto; // Avanza di 1 minuto
+            /*currentTime.display();
+            std::cout << " ";*/  //CONTROLLO DEL MINUTAGGIO DEGLI ERRORI
             updateDevices();
         }
         std::cout << "[";
@@ -161,19 +167,18 @@ void DomoticSystem::showStatus(){
     float totalConsumption = 0.0;
 
     for (const std::shared_ptr<Device>& device : devices) {
-        float devicePower = device->getPower();
-        if (devicePower < 0) {
-            totalProduction += -devicePower;
+        if (device->getPower() < 0) {
+            totalProduction -= device->getConsumption(currentTime);
         } else {
-            totalConsumption += devicePower;
+            totalConsumption += device->getConsumption(currentTime);
         }
     }
     std::cout << "[";
     currentTime.display();
-    std::cout << "] Attualmente il sistema ha prodotto " << totalProduction << "kWh e consumato" << totalConsumption << "kWh. Nello specifico:" << "\n";
+    std::cout << "] Attualmente il sistema ha prodotto " << totalProduction << "kWh e consumato " << totalConsumption << "kWh. Nello specifico:" << "\n";
     for (const std::shared_ptr<Device>& device : devices) {
         std::cout << "- Il dispositivo " << device->getName()
-        << " ha consumato " << device->getConsumption() << " kWh" << "\n";
+        << " ha consumato " << device->getConsumption(currentTime) << " kWh" << "\n";
     }
 }
 
@@ -183,9 +188,10 @@ void DomoticSystem::showDeviceStatus(const std::string& deviceName){
         if (device->getName() == deviceName) {
             std::cout << "[";
             currentTime.display();
-            std::cout<< "] Il dispositivo " << deviceName << " ha attualmente consumato" << device->getConsumption() << "kWh." << "\n";
+            std::cout<< "] Il dispositivo " << deviceName << " ha attualmente consumato" << device->getConsumption(currentTime) << "kWh." << "\n";
             return;
         }
     }
     std::cerr << "Errore: Dispositivo '" << deviceName << "' non trovato.\n";
 }
+
