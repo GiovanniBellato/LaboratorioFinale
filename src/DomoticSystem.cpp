@@ -34,9 +34,14 @@ void DomoticSystem::showTime(){
 void DomoticSystem::turnOnDevice(const std::string& deviceName) {
     for (const std::shared_ptr<Device>& device : devices) {
         if (device->getName() == deviceName) {
-            device->turnOn(currentTime);
-            if(deviceName != "Impianto fotovoltaico")
+            if(deviceName != "Impianto fotovoltaico"){
                 activeDevices.push_back(device); // Aggiungi in coda alla lista
+            }
+            else if(currentTime < fotovolt_on || currentTime >= fotovolt_off){
+                std::cerr << "Il fotovoltaico non può lavorare in assenza di luce solare.\n";
+                return;
+            }
+            device->turnOn(currentTime);
             enforcePowerLimit(); // Controlla i limiti di potenza
         }
     }
@@ -47,8 +52,12 @@ void DomoticSystem::turnOffDevice(const std::string& deviceName) {
     for (const std::shared_ptr<Device>& device : devices) {
         if (device->getName() == deviceName) {
             device->turnOff(currentTime);
-            if(deviceName != "Impianto fotovoltaico")
+            if(deviceName == "Impianto fotovoltaico"){
+                ignore_fotovolt = true;
+            }
+            else{
                 activeDevices.remove(device); // Rimuovi dalla lista
+            }
         }
     }
 }
@@ -106,9 +115,9 @@ void DomoticSystem::enforcePowerLimit() {
 // Aggiorna lo stato dei dispositivi
 void DomoticSystem::updateDevices() {
     // Gestisci l'impianto fotovoltaico in base all'orario
-    if (currentTime >= fotovolt_on && currentTime < fotovolt_off) {
+    if (currentTime >= fotovolt_on && currentTime < fotovolt_off && !ignore_fotovolt) {
         turnOnDevice("Impianto fotovoltaico");
-    } else {
+    } else if(currentTime >= fotovolt_off) {
         turnOffDevice("Impianto fotovoltaico");
     }
     // Itera sui dispositivi, escludendo il primo (Impianto fotovoltaico)
@@ -142,6 +151,7 @@ void DomoticSystem::resetSystem() {
         device->turnOff(currentTime);
         device->removeTimer(currentTime);
     }
+    ignore_fotovolt = false;
     std::cout << "[00:00] L'orario attuale è 00:00\n";
 }
 
