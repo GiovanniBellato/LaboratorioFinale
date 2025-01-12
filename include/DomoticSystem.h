@@ -1,73 +1,60 @@
-#ifndef DOMOTICSYSTEM_H_
-#define DOMOTICSYSTEM_H_
+#ifndef DOMOTIC_SYSTEM_H
+#define DOMOTIC_SYSTEM_H
 
 #include <vector>
-#include <memory>
-#include "Device.h"
+#include <string>
+#include <memory> // Per smart pointers
+#include <list>
 #include "ManualDevice.h"
+#include "CycleDevice.h"
 #include "Time.h"
 
 class DomoticSystem {
 private:
-    std::vector<std::shared_ptr<Device>> devices; // Vettore di dispositivi
-    Time currentTime; // Tempo attuale
+    std::vector<std::shared_ptr<Device>> devices; // Lista dei dispositivi
+    std::list<std::shared_ptr<Device>> activeDevices; // Lista FIFO dei dispositivi accesi
+    const float maxPower = 3.5;    // Limite massimo di potenza dalla rete
+    Time currentTime;  // Orario attuale del sistema
+    const Time fotovolt_on = Time(8,0); //il fotovoltaico si accende alle 08:00
+    const Time fotovolt_off = Time(18,0); //il fotovoltaico si spegne alle 18:00
 
+    // Metodo per verificare la potenza totale assorbita
+    float calculateTotalPower() const;
+
+    // Metodo per gestire la policy di spegnimento in caso di superamento della potenza massima
+    void enforcePowerLimit();
 
 public:
-    // Aggiunge un dispositivo al sistema
-    void addDevice(const std::shared_ptr<Device>& device) {
-        devices.push_back(device);
-    }
+    // Costruttore
+    DomoticSystem(float maxPower);
 
-    // Rimuove un dispositivo dal sistema
-    void removeDevice() {
-        devices.erase(devices.begin());
-    }
-/*
-    // Accende tutti i dispositivi
-    void turnOnAllDevices() {
-        for (auto& device : devices) {
-            device->turnOn();
-        }
-    }
+    // Metodo per accendere un dispositivo
+    void turnOnDevice(const std::string& deviceName);
 
-    // Spegne tutti i dispositivi
-    void turnOffAllDevices() {
-        for (auto& device : devices) {
-            device->turnOff();
-        }
-    }
+    // Metodo per spegnere un dispositivo
+    void turnOffDevice(const std::string& deviceName);
 
-    // Imposta il timer di accensione su tutti i dispositivi
-    void setTimerOnAllDevices(const Time& timer) {
-        for (auto& device : devices) {
-            device->setTimer(timer);
-        }
-    }
+    // Metodo per impostare un timer per un dispositivo
+    void setTimer(const std::string& deviceName, const Time& start, const Time& end);
+    void setTimer(const std::string& deviceName, const Time& start);
 
-    // Rimuove il timer di accensione da tutti i dispositivi
-    void removeTimerOnAllDevices() {
-        for (auto& device : devices) {
-            device->removeTimer();
-        }
-    }
+    // Metodo per rimuovere il timer di un dispositivo
+    void removeTimer(const std::string& deviceName);
 
-    // Imposta l'ora attuale
-    void setTime(const Time& time) {
-        currentTime = time;
-    }
+    // Metodo per aggiornare lo stato dei dispositivi in base all'orario corrente
+    void updateDevices();
 
-    // Restituisce l'ora attuale
-    Time getTime() const {
-        return currentTime;
-    }
+    // Metodo per avanzare il tempo
+    void setTime(Time& newTime);
 
-    // Stampa lo stato di tutti i dispositivi
-    void printDeviceStatus() const {
-        for (const auto& device : devices) {
-            device->printStatus();
-        }
-    }
-    */
+    // Metodo per resettare il sistema
+    void resetSystem();
+
+    // Metodo per mostrare lo stato di tutti i dispositivi
+    void showStatus();
+
+    // Metodo per mostrare lo stato di un singolo dispositivo
+    void showDeviceStatus(const std::string& deviceName);
 };
-#endif // DOMOTICSYSTEM_H
+
+#endif // DOMOTIC_SYSTEM_H
