@@ -1,45 +1,60 @@
 #include "../include/Interface.h"
+#include "../include/Time.h"
+#include "../include/DomoticSystem.h"
 
 #include <iostream>
 #include <sstream>
 
-Interface::Interface()
-{
-    
-}
+//crea l'oggetto DomoticSystem
+DomoticSystem sistemaDomotico(3);
 
+//Metodo per l'elaborazione del comando da terminale passato come stringa
 void Interface::commandReader(const std::string& command)
 {
-    std::istringstream julio(command); //julio e' un oggetto di istringstream che estrae i dati uno a uno da command 
-    std::string cmd, devicename, action, startTime, stopTime, time;
+    //julio e' un oggetto di istringstream che estrae i dati uno a uno da command 
+    std::istringstream julio(command); 
     
-    std::string word2;
-    std::string word3;
-
+    std::string cmd, devicename, action, startTime, stopTime, time, word2, word3;
+    
+    //lettura della prima parola (in questo caso e' sempre un comando)
     julio >> cmd;
 
 
     if(cmd == "set")
     {
+        //lettura della seconda parola
         julio >> word2;
         
         if(word2 == "time")
         {
+            //lettura della terza parola (in questo caso un orario)
             julio >> time;
-            //manca la funzione setTime
-            std::cout<< "setTime" << std::endl;
+            Time targetTime = toTime(time);
+            sistemaDomotico.setTime(targetTime);
         }
         else
         {
+            //escluso si tratti di un comando set time, la seconda parola deve essere il nome del dispositivo su cui si vuole agire
             devicename = word2;
 
+            //lettura della terza parola
             julio >> word3;
 
             if(word3 == "on" || word3 == "off")
             {
                 action = word3;
-                //manca la funzione setDevice on e off
-                std::cout<< "setDevice onoff " << std::endl;
+                if(action == "on")
+                {
+                    sistemaDomotico.turnOnDevice(devicename);
+                }
+                else if(action == "off")
+                {
+                    sistemaDomotico.turnOffDevice(devicename);
+                }
+                else
+                {
+                    std::cerr<< "Il comando inserito non e' valido." << std::endl;
+                }
             }
             else
             {
@@ -99,4 +114,13 @@ void Interface::commandReader(const std::string& command)
     {
         std::cerr<< "Il comando inserito non e' valido." << std::endl;
     }
+}
+
+Time toTime(std::string timeString)
+{
+    int hours = std::stoi(timeString.substr(0, 2));  // Estrai HH
+    int minutes = std::stoi(timeString.substr(3, 2));  // Estrai MM
+
+    Time temp(hours, minutes);
+    return temp;
 }
