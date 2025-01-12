@@ -10,21 +10,24 @@ private:
     int minute;
 public:
 
-    Time();
-    Time(int hour, int minute);
+    Time() : hour(0), minute(0) {} // Costruttore predefinito
+    Time(int h, int m) : hour(h), minute(m) {
+        if (h < 0 || h >= 24 || m < 0 || m >= 60) {
+            throw std::invalid_argument("Invalid time value");
+        }
+    }
     Time getTime();
     void setTime(int hour, int minute);
-    bool operator > (Time time);
-    bool operator >= (Time time);
-    bool operator < (Time time);
-    bool operator <= (Time time);
-    Time operator+(const Time& time) const;
-    Time operator-(const Time& time) const;
-    Time& operator = (Time& time);
-    bool operator == (Time* time);
-    void display();
-    int toHour();
-    Time toTime(std::string timeString);
+    bool operator > (const Time& time) const;
+    bool operator >= (const Time& time) const;
+    bool operator < (const Time& time) const;
+    bool operator <= (const Time& time) const;
+    Time operator + (const Time& time) const;
+    Time operator - (const Time& time) const;
+    Time& operator = (const Time& time);
+    bool operator == (const Time& time) const;
+    void display() const;
+    float toHour() const;
 };
 
 
