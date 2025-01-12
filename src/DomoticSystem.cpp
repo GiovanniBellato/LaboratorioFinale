@@ -84,7 +84,7 @@ void DomoticSystem::removeTimer(const std::string& deviceName) {
 // Calcola il consumo totale di potenza
 float DomoticSystem::calculateTotalPower() const {
     float totalPower = 0.0;
-    for (const std::shared_ptr<Device>& device : activeDevices) {
+    for (const std::shared_ptr<Device>& device : devices) {
         totalPower += device->getPower();
     }
     return totalPower;
