@@ -2,12 +2,11 @@
 #define CYCLE_DEVICE_H
 
 #include "Device.h"
-
-using namespace std;
+#include <string>
 
 class CycleDevice : public Device {
 private:
-    string name;    //nome del dispositivo.
+    std::string name;    //nome del dispositivo.
     int id; //identificativo unico.
     float power;    //consumo (o produzione) energetico.
     bool isOn = false;  //stato del dispositivo.
@@ -18,12 +17,22 @@ private:
     bool timer = false;
 
 public:
-    CycleDevice(float devicePower);
-    void turnOn(Time current_time);  //accende il dispositivo.
-    void turnOff(Time current_time);  //spegne il dispositivo.
-    void update(Time current_time);  // Aggiorna lo stato del dispositivo
-    void setTimerOn(Time time);
+    CycleDevice(const std::string& name, int id, float power, Time duration)
+            : name(name), id(id), power(power), duration(duration) {}
+    
+    virtual ~CycleDevice() = default;
+    
+    void turnOn(Time current_time) override;  //accende il dispositivo.
+    void turnOff(Time current_time) override;  //spegne il dispositivo.
+    void update(Time current_time) override;  // Aggiorna lo stato del dispositivo
+    void setTimerOn(Time current_time, Time time) override;
+    void removeTimer(Time) override;
     void reset();
+    std::string getName() const override {return name;}
+    float getPower() override {return power;}
+    float getConsumption() override {return total_power;}
+    
+    void setTimerOff(Time start, Time end) override;
 };
 
 #endif
