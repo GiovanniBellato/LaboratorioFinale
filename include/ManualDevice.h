@@ -9,7 +9,7 @@ private:
     std::string name;    //nome del dispositivo.
     int id; //identificativo unico.
     float power;    //consumo (o produzione) energetico.
-    float total_power; //consumo totale energetico
+    float total_power=0; //consumo totale energetico
     bool isOn = false;  //stato del dispositivo.
     Time timer_on;
     bool timer = false;
@@ -29,7 +29,8 @@ public:
     void reset();
     std::string getName() const override {return name;}
     float getPower() override {return power;}
-    float getConsumption() override {return total_power;}
+    float getConsumption(Time);
+    bool started = false;
 
 };
 
