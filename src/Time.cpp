@@ -1,5 +1,13 @@
 #include "../include/Time.h"
 
+Time::Time(int h, int m){
+    if (!(h >= 0 && h < 24 && m >= 0 && m < 60)){
+        throw std::invalid_argument("Invalid time values");
+    }else{
+    	hour = h;
+    	minute = m;
+    	}
+    }
 
 float Time::toHour() const {
     return (hour + (minute/60));
@@ -46,7 +54,7 @@ bool Time::operator <= (const Time& time) const {
 Time Time::operator + (const Time& time) const{
     int hour_t = hour + time.hour;
     int minute_t = 0;
-    if(minute + time.minute > 60){
+    if(minute + time.minute >= 60){
         hour_t++;
         minute_t = (minute + time.minute) - 60;
     }
@@ -92,5 +100,3 @@ Time toTime(std::string timeString)
     Time temp(hours, minutes);
     return temp;
 }
-
- 
