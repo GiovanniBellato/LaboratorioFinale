@@ -81,3 +81,4 @@ float CycleDevice::getConsumption(Time current_time){
 	}
 	else return 0;
 }
+
