@@ -60,8 +60,7 @@ void Interface::commandReader(const std::string& command)
             {
                 startTime = word3;
                 julio >> stopTime;
-                //manca la funzione setDevice con accensione e spegnimento
-                std::cout<< " setDevice time" << std::endl;
+                sistemaDomotico.setTimer(devicename, toTime(startTime), toTime(stopTime));
             }
         }
 
@@ -71,19 +70,19 @@ void Interface::commandReader(const std::string& command)
     {
         julio >> devicename;
         //manca la funzione rm per togliere il timer 
-        std::cout<< " remove timer" << std::endl;
+        
     }
     else if (cmd == "show")
     {
         if(julio >> devicename)
         {
             //manca la funzione showDevice
-            std::cout<< "showDevice " << std::endl;
+            
         }
         else
         {
             //manca la funzione show
-            std::cout<< " show" << std::endl;
+            
         }
     }
     else if (cmd == "reset")
@@ -93,17 +92,17 @@ void Interface::commandReader(const std::string& command)
         if(word2 == "time")
         {
             //manca la funzione resetTime
-            std::cout<< "reset time " << std::endl;
+            
         }
         else if (word2 == "timers")
         {
             //manca la funzione resetTimers
-            std::cout<< "reset timers " << std::endl;
+           
         }
         else if (word2 == "all")
         {
             //manca la funzione resetAll
-            std::cout<< "resest all " << std::endl;
+           
         }
         else
         {
