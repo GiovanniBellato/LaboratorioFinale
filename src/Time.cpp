@@ -1,4 +1,4 @@
-#include "../include/Time.h"
+#include "Time.h"
 
 Time::Time(int h, int m){
     if (!(h >= 0 && h < 24 && m >= 0 && m < 60)){
@@ -91,4 +91,11 @@ bool Time::operator == (const Time& time) const{
     return hour == time.hour && minute == time.minute;
 }
 
+Time toTime(std::string timeString)
+{
+    int hours = std::stoi(timeString.substr(0, 2));  // Estrai HH
+    int minutes = std::stoi(timeString.substr(3, 2));  // Estrai MM
 
+    Time temp(hours, minutes);
+    return temp;
+}
