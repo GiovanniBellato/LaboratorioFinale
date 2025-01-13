@@ -94,9 +94,11 @@ void DomoticSystem::removeTimer(const std::string& deviceName) {
 // Calcola il consumo totale di potenza
 float DomoticSystem::calculateTotalPower() const {
     float totalPower = 0.0;
-    for (const std::shared_ptr<Device>& device : devices) {
+    for (const std::shared_ptr<Device>& device : activeDevices)
         totalPower += device->getPower();
-    }
+    //Gestisco a parte il consumo (negativo del fotovoltaico)
+    if(!ignore_fotovolt)
+        totalPower += devices[0]->getPower();
     return totalPower;
 }
 
