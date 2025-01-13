@@ -24,7 +24,7 @@ public:
     Time operator - (const Time& time) const;
     Time& operator = (const Time& time);
     bool operator == (const Time& time) const;
-    void display() const;
+    std::string toString() const;
     float toHour() const;
 
 };
