@@ -38,7 +38,7 @@ void ManualDevice::setTimerOn(Time current_time, Time time){
     Time t_off(23,59);
     timer_off = t_off;
     timer = true;
-    std::cout << "[" << current_time.toString() << "] Impostato un timer di accesione nel dispositivo <" << name << ">"<<" alle <" << current_time.toString() << ">" <<std::endl;
+    std::cout << "[" << current_time.toString() << "] Impostato un timer di accesione nel dispositivo <" << name << ">"<<" alle <" << timer_on.toString() << ">" <<std::endl;
     }else{
         std::cout<< "WARNING: Timer di accensione già scaduto (prova con orario successivo)"<<std::endl;
     }
@@ -48,7 +48,7 @@ void ManualDevice::setTimerOff(Time current_time, Time time){
     if(current_time <= time){
         timer_off = time;
         timer = true;
-        std::cout << "[" << current_time.toString() << "] Impostato un timer di spegnimento nel dispositivo <" << name << ">"<<" alle <" << current_time.toString() << ">" << std::endl;
+        std::cout << "[" << current_time.toString() << "] Impostato un timer di spegnimento nel dispositivo <" << name << ">"<<" alle <" << timer_off.toString() << ">" << std::endl;
     }else{
         std::cout<< "WARNING: Timer di spegnimento già scaduto (prova con orario successivo)" <<std::endl;
     }
