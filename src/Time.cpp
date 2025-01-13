@@ -1,4 +1,4 @@
-#include "Time.h"
+#include "../include/Time.h"
 
 Time::Time(int h, int m){
     if (!(h >= 0 && h < 24 && m >= 0 && m < 60)){
@@ -13,8 +13,8 @@ float Time::toHour() const {
     return (hour + (minute/60));
 }
 
-void Time::display() const {
-    std::cout << hour <<":"<<minute;
+std::string Time::toString() const {
+    return std::to_string(hour) + ":" + std::to_string(minute);
 }
 
 Time Time::getTime() {
