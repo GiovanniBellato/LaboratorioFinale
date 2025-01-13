@@ -62,6 +62,9 @@ public:
 
     // Metodo per mostrare lo stato di un singolo dispositivo
     void showDeviceStatus(const std::string& deviceName);
+
+    //Metodo per ritornare un vettore contenente il nome di tutti i dispositivi
+    std::vector<std::string> getDevices();
 };
 
 #endif // DOMOTIC_SYSTEM_H
