@@ -28,9 +28,7 @@ DomoticSystem::DomoticSystem(float maxPower)
 
 //Stampa a video l'orario corrente
 void DomoticSystem::showTime(){
-    std::cout << "L’orario attuale è ";
-    currentTime.display();
-    std::cout << std::endl;
+    std::cout << "L’orario attuale è " << currentTime.toString() << std::endl;
 }
 
 // Accende un dispositivo
@@ -107,9 +105,7 @@ void DomoticSystem::enforcePowerLimit() {
     while (calculateTotalPower() > maxPower && !activeDevices.empty()) {
         // Spegni l'ultimo dispositivo acceso
         std::shared_ptr<Device> lastDevice = activeDevices.back(); // Ultimo dispositivo in coda
-        std::cout << "[";
-        currentTime.display();
-        std::cout << "] " << "Il dispositivo '" << lastDevice->getName() << "' è stato spento per superamento del limite di potenza.\n";
+        std::cout << "[" << currentTime.toString() << "] " << "Il dispositivo '" << lastDevice->getName() << "' è stato spento per superamento del limite di potenza.\n";
         lastDevice->turnOff(currentTime);
         activeDevices.pop_back(); // Rimuovi l'ultimo dispositivo dalla lista
     }
@@ -140,11 +136,7 @@ void DomoticSystem::setTime(Time& newTime) {
             std::cout << " ";*/  //CONTROLLO DEL MINUTAGGIO DEGLI ERRORI
             updateDevices();
         }
-        std::cout << "[";
-        currentTime.display();
-        std::cout<< "] L'orario attuale è ";
-        currentTime.display();
-        std::cout << "\n";
+        std::cout << "[" << currentTime.toString() << "] L'orario attuale è " << currentTime.toString() << "\n";
     } else {
         std::cerr << "Errore: Il nuovo orario deve essere successivo all'orario corrente.\n";
     }
@@ -173,12 +165,9 @@ void DomoticSystem::showStatus(){
             totalConsumption += device->getConsumption(currentTime);
         }
     }
-    std::cout << "[";
-    currentTime.display();
-    std::cout << "] Attualmente il sistema ha prodotto " << totalProduction << "kWh e consumato " << totalConsumption << "kWh. Nello specifico:" << "\n";
+    std::cout << "[" << currentTime.toString() << "] Attualmente il sistema ha prodotto " << totalProduction << "kWh e consumato " << totalConsumption << "kWh. Nello specifico:" << "\n";
     for (const std::shared_ptr<Device>& device : devices) {
-        std::cout << "- Il dispositivo " << device->getName()
-        << " ha consumato " << device->getConsumption(currentTime) << " kWh" << "\n";
+        std::cout << "- Il dispositivo " << device->getName() << " ha consumato " << device->getConsumption(currentTime) << " kWh" << "\n";
     }
 }
 
@@ -186,9 +175,7 @@ void DomoticSystem::showStatus(){
 void DomoticSystem::showDeviceStatus(const std::string& deviceName){
     for (const std::shared_ptr<Device>& device : devices) {
         if (device->getName() == deviceName) {
-            std::cout << "[";
-            currentTime.display();
-            std::cout<< "] Il dispositivo " << deviceName << " ha attualmente consumato" << device->getConsumption(currentTime) << "kWh." << "\n";
+            std::cout << "[" << currentTime.toString() << "] Il dispositivo " << deviceName << " ha attualmente consumato" << device->getConsumption(currentTime) << "kWh." << "\n";
             return;
         }
     }
