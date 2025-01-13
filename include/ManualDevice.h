@@ -29,7 +29,7 @@ public:
     void reset();
     std::string getName() const override {return name;}
     float getPower() override {return power;}
-    float getConsumption(Time);
+    float getConsumption(Time) override;
     bool started = false;
 
 };
