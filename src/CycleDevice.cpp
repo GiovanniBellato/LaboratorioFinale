@@ -63,12 +63,12 @@ void CycleDevice::removeTimer(Time current_time){
 void CycleDevice::setTimerOff(Time start, Time end) {}
 
 float CycleDevice::getConsumption(Time current_time){
-	if(started){
-	Time endx = current_time;
-	Time delta = endx - start;
-	float total_power = power * delta.toHour();
-	return total_power;
-	}
-	else return 0;
+    if(started && isOn){
+        Time delta = current_time - start;
+        return (power * delta.toHour());
+    }
+    if(started)
+        return (power * duration.toHour());
+    return 0;
 }
 
