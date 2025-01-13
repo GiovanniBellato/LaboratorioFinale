@@ -47,15 +47,33 @@ bool Time::operator > (const Time& time) const {
 }
 
 bool Time::operator >= (const Time& time) const {
-    return (*this > time || *this == time);
+	if(hour > time.hour)
+	    return true;
+	if(hour < time.hour)
+	    return false;
+    if(minute >= time.minute)
+	    return true;
+	return false;
 }
 
 bool Time::operator < (const Time& time) const {
-    return !(*this >= time);
+    if(hour < time.hour)
+        return true;
+    if(hour > time.hour)
+        return false;
+    if(minute < time.minute)
+        return true;
+    return false;
 }
 
 bool Time::operator <= (const Time& time) const {
-    return !(*this > time);
+	if(hour < time.hour)
+		return true;
+	if(hour > time.hour)
+		return false;
+	if(minute >= time.minute)
+		return true;
+	return false;
 }
 
 Time Time::operator + (const Time& time) const{
@@ -105,4 +123,3 @@ Time toTime(std::string timeString)
 
     Time temp(hours, minutes);
     return temp;
-}
