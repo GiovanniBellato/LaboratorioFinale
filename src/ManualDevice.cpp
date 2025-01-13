@@ -67,11 +67,13 @@ void ManualDevice::reset(){
 }
 
 float ManualDevice::getConsumption(Time current_time){
-	if(started){
-	Time endx = current_time;
-	Time delta = endx - start;
-	float total_power = power * delta.toHour();
-	return total_power;
+	if(started && isOn){
+        Time delta = current_time - start;
+        return (power * delta.toHour());
 	}
-	else return 0;
+    if(started){
+        Time delta = end - start;
+        return (power * delta.toHour());
+    }
+	return 0;
 }
