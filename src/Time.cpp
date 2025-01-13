@@ -14,7 +14,14 @@ float Time::toHour() const {
 }
 
 std::string Time::toString() const {
-    return std::to_string(hour) + ":" + std::to_string(minute);
+    std::string timeString;
+    //se ore e minuti contengono una sola cifra aggiungo uno 0 davanti
+    if(hour < 10) {timeString = ("0" + std::to_string(hour));}
+    else {timeString = std::to_string(hour);}
+    timeString += ":";
+    if(minute < 10) {timeString += ("0" + std::to_string(minute));}
+    else {timeString += std::to_string(minute);}
+    return timeString;
 }
 
 Time Time::getTime() {
