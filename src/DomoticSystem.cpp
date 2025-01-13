@@ -195,3 +195,13 @@ void DomoticSystem::showDeviceStatus(const std::string& deviceName){
     std::cerr << "Errore: Dispositivo '" << deviceName << "' non trovato.\n";
 }
 
+//Ritorna un vettore di string contenente i nomi dei devices.
+//Elementi in posizione 0 - 3 : manual devices
+//Elementi in posizione 4 - 9 : cycle devices
+std::vector<std::string> DomoticSystem::getDevices() {
+    std::vector<std::string> devicesList;
+    for (const std::shared_ptr<Device>& device : devices)
+        devicesList.push_back (device->getName());
+    return devicesList;
+}
+
