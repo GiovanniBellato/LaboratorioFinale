@@ -15,6 +15,8 @@ Interface::Interface(){
 //Metodo per l'elaborazione del comando da terminale passato come stringa
 void Interface::commandReader(const std::string& command)
 {
+    std::vector<std::string> deviceList = sistemaDomotico.getDevices();
+    
     //julio e' un oggetto di istringstream che estrae i dati uno a uno da command
     std::istringstream julio(command);
 
@@ -43,14 +45,15 @@ void Interface::commandReader(const std::string& command)
         }
         else
         {
-        	//CONTROLLO NOME DEVICE
-        	for(std::string nome : sistemaDomotico.getDevices()){
-        		if(devicename == nome) continue;
-        		else {
-        			throw std::string("Errore, il device inserito è sconosciuto\n");
-        		}
-
+            //CONTROLLO NOME DEVICE
+            bool found = false;
+            for(int i=0; i<deviceList.size(); i++){
+        		if(devicename.compare(deviceList[i]) == 0)
+                    found = true;
         	}
+            if(!found)
+                throw std::string("Errore, il device inserito è sconosciuto\n");
+
             devicename = word2;
 
             julio >> word3;
