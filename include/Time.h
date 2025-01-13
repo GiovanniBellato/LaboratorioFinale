@@ -1,8 +1,9 @@
 #ifndef TIME_H_
 #define TIME_H_
 
-#include<stdexcept>
+#include <stdexcept>
 #include <iostream>
+#include <string>
 
 class Time{
 private:
@@ -25,8 +26,9 @@ public:
     bool operator == (const Time& time) const;
     void display() const;
     float toHour() const;
-    Time toTime(std::string timeString);
+
 };
 
+Time toTime(std::string timeString);
 
 #endif
