@@ -2,8 +2,6 @@
 #include "../include/Time.h"
 #include "../include/DomoticSystem.h"
 
-#include <iostream>
-#include <sstream>
 #include <algorithm>
 
 //CREO L'OGGETTO
