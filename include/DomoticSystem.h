@@ -64,6 +64,9 @@ public:
     //Metodo per ritornare un vettore contenente il nome di tutti i dispositivi
     std::vector<std::string> getDevices();
 
+    //Resetta il tempo a 00:00 sui dispositivi
+    void resetTime();
+
     //Controlla se è cycle o manual
     int checkDevice(const std::string&);
 };
