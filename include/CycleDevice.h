@@ -2,7 +2,6 @@
 #define CYCLE_DEVICE_H
 
 #include "Device.h"
-#include <string>
 
 class CycleDevice : public Device {
 private:
