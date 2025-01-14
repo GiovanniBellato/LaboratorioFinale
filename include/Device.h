@@ -18,9 +18,9 @@ public:
     virtual ~Device() = default;
 
     //GESTIONE ACCENSIONE/SPEGNIMENTO E DEL TEMPO
-    virtual void update(Time currentTime) = 0;   //aggiorna lo stato del dispositivo.
-    virtual void turnOn(Time) = 0;  //accende il dispositivo.
-    virtual void turnOff(Time) = 0; //spegne il dispositivo.
+    virtual void update(Time currentTime) = 0;   
+    virtual void turnOn(Time) = 0;  
+    virtual void turnOff(Time) = 0; 
 
     //FUNZIONE DI OTTENIMENTO DATI
     virtual std::string getName() const = 0;
