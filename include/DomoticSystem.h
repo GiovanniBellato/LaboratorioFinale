@@ -4,6 +4,9 @@
 #include <vector>
 #include <memory> // PER UTILIZZO SMART POINTERS
 #include <list>   // PER UTILIZZO LISTE
+#include <iostream>
+#include <sstream>
+
 #include "ManualDevice.h"
 #include "CycleDevice.h"
 
