@@ -1,6 +1,6 @@
 #include "../include/ManualDevice.h"
 
-void ManualDevice::turnOn(Time current_time){  //accende il dispositivo.
+void ManualDevice::turnOn(Time current_time){  
     if(!isOn){
         started = true;
         start = current_time;
@@ -9,7 +9,7 @@ void ManualDevice::turnOn(Time current_time){  //accende il dispositivo.
     }
 }
 
-void ManualDevice::turnOff(Time current_time){ //spegne il dispositivo.
+void ManualDevice::turnOff(Time current_time){ 
     if(isOn){
         end = current_time;
         Time delta = end - start;
@@ -20,7 +20,7 @@ void ManualDevice::turnOff(Time current_time){ //spegne il dispositivo.
     }
 }
 
-void ManualDevice::update(Time current_time){   //aggiorna lo stato del dispositivo.
+void ManualDevice::update(Time current_time){   
     if(!timer)
         return;
     if(current_time >= timer_on)
