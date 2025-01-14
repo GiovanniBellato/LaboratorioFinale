@@ -1,18 +1,6 @@
 #include "../include/CycleDevice.h"
 
-/*
- string name;    //nome del dispositivo.
- int id; //identificativo unico.
- float power;    //consumo (o produzione) energetico.
- bool isOn = false;  //stato del dispositivo.
- Time start;         // Orario di accensione
- Time duration; // Durata prefissata del ciclo
- float total_power = 0;   // Consumo totale energetico
- Time timer_on;
- bool timer = false;
- */
-
-void CycleDevice::turnOn(Time current_time){  //accende il dispositivo.
+void CycleDevice::turnOn(Time current_time){  
     if(!isOn){
     	started = true;
         start = current_time;
@@ -21,7 +9,7 @@ void CycleDevice::turnOn(Time current_time){  //accende il dispositivo.
     }
 }
 
-void CycleDevice::turnOff(Time current_time){  //spegne il dispositivo.
+void CycleDevice::turnOff(Time current_time){  
     if(isOn){
         isOn = false;
         Time delta = current_time - start;
@@ -32,7 +20,7 @@ void CycleDevice::turnOff(Time current_time){  //spegne il dispositivo.
     }
 }
 
-void CycleDevice::update(Time current_time){  // Aggiorna lo stato del dispositivo
+void CycleDevice::update(Time current_time){  
     if(timer && current_time >= timer_on)
         turnOn(timer_on);
     if(isOn)
