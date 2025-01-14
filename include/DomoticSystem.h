@@ -18,7 +18,7 @@ private:
     essa non conterrà il fotovoltaico. */
 
     const float maxPower = 3.5;    //LIMITE POTENZA DELLA RETE IN KWH
-    Time currentTime;    //ORARIO DEL SISTEMA 
+    Time currentTime;    //ORARIO DEL SISTEMA
 
     Time fotovolt_on;   //ATTENZIONE : IL FOTOVOLTAICO SI ACCENDE AUTOMATICAMENTE ALLE 08:00
     Time fotovolt_off;   //ATTENZIONE : IL FOTOVOLTAICO SI SPEGNE AUTOMATICAMENTE ALLE 18:00 (PER MANCANZA DI LUCE)
