@@ -46,7 +46,7 @@ void Interface::commandReader(const std::string& command)
                 //CONTROLLO SE PER ERRORE SONO FINITE DELLE LETTERE NELL'ORARIO
                 if(std::any_of(time.begin(), time.end(), ::isalpha))
                 {
-                    throw std::string("L'orario inserito non è valido.\n");
+                    throw std::string("L'orario inserito non è valido.\n>");
                 }
                 Time targetTime = toTime(time);
                 
@@ -54,7 +54,7 @@ void Interface::commandReader(const std::string& command)
                 sistemaDomotico.setTime(targetTime);
 
         	}catch(...){
-        		std::cerr<< "L'orario inserito non è valido." << std::endl;
+        		std::cerr<< "L'orario inserito non è valido." << std::endl << ">";
             }
 
         }
@@ -165,10 +165,10 @@ void Interface::commandReader(const std::string& command)
                             word3 = commandVector[3];
                         }
                 }
-                else throw std::string("Errore, nel sistema non esiste un dispositivo con questo nome.\n");
+                else throw std::string("Errore, nel sistema non esiste un dispositivo con questo nome.\n>");
             }catch(...)
             {
-                std::cerr<<"Errore, nel sistema non esiste un dispositivo con questo nome."<<std::endl;
+                std::cerr<<"Errore, nel sistema non esiste un dispositivo con questo nome."<<std::endl <<">";
             }
             
             //controllo che la parola seguente sia "on" o "off" o un orario
@@ -196,7 +196,7 @@ void Interface::commandReader(const std::string& command)
                 //controllo se ci sono delle lettere inserite per sbaglio nell'orario
                 if(std::any_of(startTime.begin(), startTime.end(), ::isalpha))
                 {
-                    throw std::string("L'orario inserito non è valido.\n");
+                    throw std::string("L'orario inserito non è valido.\n>");
                 }
                 
 
@@ -205,13 +205,13 @@ void Interface::commandReader(const std::string& command)
                 if(stopTime != "0")
                 {
                     if(sistemaDomotico.checkDevice(devicename) != 1) {
-                        throw std::string("Non è possibile impostare un timer di spegnimento su un CycleDevice.\n");
+                        throw std::string("Non è possibile impostare un timer di spegnimento su un CycleDevice.\n>");
                     }else{
 
                     //controllo se ci sono delle lettere inserite per sbaglio nell'orario
                     if(std::any_of(stopTime.begin(), stopTime.end(), ::isalpha))
                     {
-                        throw std::string("L'orario inserito non è valido.\n");
+                        throw std::string("L'orario inserito non è valido.\n>");
                     }
 
 
@@ -221,7 +221,7 @@ void Interface::commandReader(const std::string& command)
                 }
                 else sistemaDomotico.setTimer(devicename, start_t);
                 }catch(...){
-                	std::cerr<<"Orario inserito non valido"<<std::endl;
+                	std::cerr<<"Orario inserito non valido"<<std::endl<<">";
                 }
             }
         }
@@ -283,10 +283,10 @@ void Interface::commandReader(const std::string& command)
                 {
                     devicename = "Televisore";
                 }
-                else throw std::string("Errore, nel sistema non esiste un dispositivo con questo nome.\n");
+                else throw std::string("Errore, nel sistema non esiste un dispositivo con questo nome.\n>");
             }catch(...)
             {
-                std::cerr<<"Errore, nel sistema non esiste un dispositivo con questo nome."<<std::endl;
+                std::cerr<<"Errore, nel sistema non esiste un dispositivo con questo nome."<<std::endl<<">";
             }
 
         //rimuovo il timer del dispositivo
@@ -353,10 +353,10 @@ void Interface::commandReader(const std::string& command)
                 {
                     devicename = "Televisore";
                 }
-                else throw std::string("Errore, nel sistema non esiste un dispositivo con questo nome.\n");
+                else throw std::string("Errore, nel sistema non esiste un dispositivo con questo nome.\n>");
             }catch(...)
             {
-                std::cerr<<"Errore, nel sistema non esiste un dispositivo con questo nome."<<std::endl;
+                std::cerr<<"Errore, nel sistema non esiste un dispositivo con questo nome."<<std::endl<<">";
             }
 
             //mostro lo stato del dispositivo
@@ -390,17 +390,17 @@ void Interface::commandReader(const std::string& command)
         }
         else
         {
-            throw std::string("Il comando inserito non e' valido.\n");
+            throw std::string("Il comando inserito non e' valido.\n>");
         }
     }
     else
     {
-    	throw std::string("Il comando inserito non e' valido.\n");
+    	throw std::string("Il comando inserito non e' valido.\n>");
     }
     
     }catch(...)
     {
-    std::cerr<<"Il comando inserito non e' valido."<<std::endl;
+    std::cerr<<"Il comando inserito non e' valido."<<std::endl<<">";
     }
 }
 
