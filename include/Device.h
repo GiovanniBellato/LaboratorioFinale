@@ -3,9 +3,6 @@
 
 #include "Time.h"
 
-#include <string>
-
-
 class Device{
 private:
     std::string name;    //nome del dispositivo.
