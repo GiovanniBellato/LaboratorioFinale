@@ -6,6 +6,7 @@
 class Interface 
 {
     public:
+        Interface();
         void commandReader(const std::string& command);
 
 };
