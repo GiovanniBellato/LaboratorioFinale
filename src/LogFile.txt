@@ -1,1 +1,35 @@
 [00:00] Impostato un timer di accesione nel dispositivo <Lavastoviglie> alle <13:00> 
+[08:00] Il dispositivo <Impianto fotovoltaico> si è acceso. 
+[12:23] L'orario attuale è 12:23
+WARNING: Timer di accensione già scaduto (prova con orario successivo) 
+[12:23] Impostato un timer di spegnimento nel dispositivo <Pompa di calore + termostato> alle <15:00> 
+[12:23] Il dispositivo <Pompa di calore + termostato> si è acceso. 
+[12:23] Rimosso il timer dal dispositivo <Impianto fotovoltaico> 
+[12:23] Rimosso il timer dal dispositivo <Pompa di calore + termostato> 
+[12:23] Rimosso il timer dal dispositivo <Scaldabagno> 
+[12:23] Rimosso il timer dal dispositivo <Frigorifero> 
+[12:23] Rimosso il timer dal dispositivo <Lavatrice> 
+[12:23] Rimosso il timer dal dispositivo <Lavastoviglie> 
+[12:23] Rimosso il timer dal dispositivo <Tapparelle elettriche> 
+[12:23] Rimosso il timer dal dispositivo <Forno a microonde> 
+[12:23] Rimosso il timer dal dispositivo <Asciugatrice> 
+[12:23] Rimosso il timer dal dispositivo <Televisore> 
+[18:00] Il dispositivo <Impianto fotovoltaico> si è spento. 
+[18:00] L'orario attuale è 18:00
+[00:00] Il dispositivo <Pompa di calore + termostato> si è spento. 
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+[00:00] L'orario attuale è 00:00 
