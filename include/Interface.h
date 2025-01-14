@@ -3,12 +3,10 @@
 
 #include <string>
 
-class Interface {
-public:
-    Interface();
-    void commandReader(const std::string& command);
-
-private:
+class Interface 
+{
+    public:
+        void commandReader(const std::string& command);
 
 };
 

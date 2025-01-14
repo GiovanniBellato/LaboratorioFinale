@@ -8,11 +8,6 @@
 //crea l'oggetto DomoticSystem
 DomoticSystem sistemaDomotico(3.5);
 
-Interface::Interface(){
-	//SONO INUTILE, CODICE SPRECATO.
-}
-
-
 
 //Metodo per l'elaborazione del comando da terminale passato come stringa
 void Interface::commandReader(const std::string& command)
@@ -27,7 +22,8 @@ void Interface::commandReader(const std::string& command)
     std::string word;
 
     //creo un vettore che contiene per ogni elemento una parola del comando
-    while (julio >> word) {
+    while (julio >> word) 
+     {
         commandVector.push_back(word);
     }
 
@@ -349,20 +345,20 @@ void Interface::commandReader(const std::string& command)
     }
     else if (commandVector[0] == "reset")
     {
-        julio >> word2;
 
-        if(word2 == "time")
+        if(commandVector[1] == "time")
         {
             //TODO:RESET TIME
+            std::cout<<"WORK IN PROGRESS."<<std::endl;
 
         }
-        else if (word2 == "timers")
+        else if (commandVector[1] == "timers")
         {
             for(std::string nome : sistemaDomotico.getDevices())
             	sistemaDomotico.removeTimer(nome);
 
         }
-        else if (word2 == "all")
+        else if (commandVector[1] == "all")
         {
             sistemaDomotico.resetSystem();
 
