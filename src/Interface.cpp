@@ -10,15 +10,8 @@ Interface::Interface(){ /*NULLA*/ }
 
 void Interface::commandReader(const std::string& command)
 {
-<<<<<<< Updated upstream
-    //CREO LISTA DEI DISPOSITIVI
-    std::vector<std::string> deviceList = sistemaDomotico.getDevices();
-
-    //JULIO E' UN OGGETTO CHE ESTRAE I COMANDI DI INPUT UNO A UNO
-=======
  
     //julio e' un oggetto di istringstream che estrae i dati uno a uno da command
->>>>>>> Stashed changes
     std::istringstream julio(command);
 
     std::vector<std::string> commandVector;
@@ -30,15 +23,10 @@ void Interface::commandReader(const std::string& command)
         commandVector.push_back(word);
     }
 
-<<<<<<< Updated upstream
-    //DICHIARAZIONE VARIABILI
-    std::string cmd, devicename, action, startTime, stopTime, time, word2, word3;
-=======
     //creo delle variabili per contenere i dati del comando
     std::string cmd, devicename, action, startTime, stopTime, time, word2, word3;
 
     //inizializzo le variabili a zero
->>>>>>> Stashed changes
     word2 = "0";
     word3 = "0";
 
