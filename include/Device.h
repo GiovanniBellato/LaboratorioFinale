@@ -5,26 +5,30 @@
 
 class Device{
 private:
-    std::string name;    //nome del dispositivo.
-    int id; //identificativo unico.
-    float power;    //consumo (o produzione) energetico.
-    float total_power; //consumo totale energetico
-    bool isOn;  //stato del dispositivo.
-    Time timer_on;   //orario di accensione.
-    bool timer = false;
-    float energyConsumed;   //consumo energetico totale
+    std::string name;        //NOME DISPOSITIVO
+    int id;                  //ID UNICO
+    float power;             //POTENZA IN KWH
+    float total_power;       //CONSUMO TOTALE EFFETTUATO
+    bool isOn;               //STATO DEL DISPOSITIVO
+    Time timer_on;           //TIMER DI ACCENSIONE
+    bool timer = false;      //STATO DEL TIMER
+    float energyConsumed;   
 
 public:
-
     Device() : timer_on(0, 0) {}
     virtual ~Device() = default;
 
+    //GESTIONE ACCENSIONE/SPEGNIMENTO E DEL TEMPO
     virtual void update(Time currentTime) = 0;   //aggiorna lo stato del dispositivo.
     virtual void turnOn(Time) = 0;  //accende il dispositivo.
     virtual void turnOff(Time) = 0; //spegne il dispositivo.
+
+    //FUNZIONE DI OTTENIMENTO DATI
     virtual std::string getName() const = 0;
     virtual float getPower() = 0;
     virtual float getConsumption(Time) = 0;
+
+    //GESTIONE TIMER
     virtual void removeTimer(Time) = 0;
     virtual void setTimerOn(Time, Time) = 0;
     virtual void setTimerOff(Time, Time) = 0;
