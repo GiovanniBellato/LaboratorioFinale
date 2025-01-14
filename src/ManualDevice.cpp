@@ -1,62 +1,55 @@
 #include "../include/ManualDevice.h"
-#include <iostream>
 
 void ManualDevice::turnOn(Time current_time){  //accende il dispositivo.
     if(!isOn){
-    started = true;
-    start = current_time;
-    isOn = true;
-    std::cout << "[" << current_time.toString() << "] Il dispositivo <" << name << "> si è acceso." << std::endl;
+        started = true;
+        start = current_time;
+        isOn = true;
+        print ("[" + current_time.toString() + "] Il dispositivo <" + name + "> si è acceso. \n");
     }
 }
 
 void ManualDevice::turnOff(Time current_time){ //spegne il dispositivo.
     if(isOn){
-    end = current_time;
-    Time delta = end - start;
-    total_power += power * delta.toHour();
-    isOn = false;
-    timer = false;
-    std::cout << "[" << current_time.toString() << "] Il dispositivo <" << name << "> si è spento." <<std::endl;
+        end = current_time;
+        Time delta = end - start;
+        total_power += power * delta.toHour();
+        isOn = false;
+        timer = false;
+        print ("[" + current_time.toString() + "] Il dispositivo <" + name + "> si è spento. \n");
     }
 }
 
 void ManualDevice::update(Time current_time){   //aggiorna lo stato del dispositivo.
     if(!timer)
         return;
-    if(current_time >= timer_on){
+    if(current_time >= timer_on)
         turnOn(timer_on);
-    }
-    if(current_time >= timer_off){
+    if(current_time >= timer_off)
         turnOff(timer_off);
-    }
 }
 
 void ManualDevice::setTimerOn(Time current_time, Time time){
     if(current_time <= time){
-    timer_on = time;
-    Time t_off(23,59);
-    timer_off = t_off;
-    timer = true;
-    std::cout << "[" << current_time.toString() << "] Impostato un timer di accesione nel dispositivo <" << name << ">"<<" alle <" << timer_on.toString() << ">" <<std::endl;
-    }else{
-        std::cout<< "WARNING: Timer di accensione già scaduto (prova con orario successivo)"<<std::endl;
-    }
+        timer_on = time;
+        Time t_off(23,59);
+        timer_off = t_off;
+        timer = true;
+        print ("[" + current_time.toString() + "] Impostato un timer di accesione nel dispositivo <" + name + ">" + " alle <" + timer_on.toString() + "> \n");
+    } else {print("WARNING: Timer di accensione già scaduto (prova con orario successivo) \n");}
 }
 
 void ManualDevice::setTimerOff(Time current_time, Time time){
     if(current_time <= time){
         timer_off = time;
         timer = true;
-        std::cout << "[" << current_time.toString() << "] Impostato un timer di spegnimento nel dispositivo <" << name << ">"<<" alle <" << timer_off.toString() << ">" << std::endl;
-    }else{
-        std::cout<< "WARNING: Timer di spegnimento già scaduto (prova con orario successivo)" <<std::endl;
-    }
+        print ("[" + current_time.toString() + "] Impostato un timer di spegnimento nel dispositivo <" + name + ">" + " alle <" + timer_off.toString() + "> \n");
+    } else {print ("WARNING: Timer di spegnimento già scaduto (prova con orario successivo) \n");}
 }
 
 void ManualDevice::removeTimer(Time current_time){
     timer = false;
-    std::cout << "[" << current_time.toString() << "] Rimosso il timer dal dispositivo <" << name << ">" <<std::endl ;
+    print ("[" + current_time.toString() + "] Rimosso il timer dal dispositivo <" + name + "> \n");
 
 }
 
