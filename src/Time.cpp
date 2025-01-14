@@ -6,8 +6,8 @@ Time::Time(int h, int m){
     }else{
     	hour = h;
     	minute = m;
-    	}
     }
+}
 
 float Time::toHour() const {
     return (hour + (minute/60));
@@ -47,33 +47,15 @@ bool Time::operator > (const Time& time) const {
 }
 
 bool Time::operator >= (const Time& time) const {
-	if(hour > time.hour)
-	    return true;
-	if(hour < time.hour)
-	    return false;
-    if(minute >= time.minute)
-	    return true;
-	return false;
+    return (*this > time || *this == time);
 }
 
 bool Time::operator < (const Time& time) const {
-    if(hour < time.hour)
-        return true;
-    if(hour > time.hour)
-        return false;
-    if(minute < time.minute)
-        return true;
-    return false;
+    return !(*this >= time);
 }
 
 bool Time::operator <= (const Time& time) const {
-	if(hour < time.hour)
-		return true;
-	if(hour > time.hour)
-		return false;
-	if(minute >= time.minute)
-		return true;
-	return false;
+    return !(*this > time);
 }
 
 Time Time::operator + (const Time& time) const{
@@ -124,3 +106,16 @@ Time toTime(std::string timeString)
     Time temp(hours, minutes);
     return temp;
 }
+
+void print (std::string string){
+    std::ofstream fout("LogFile.txt", std::ios::app);
+    if (!fout) {
+        std::cerr << "[ERRORE] Impossibile aprire il file di log!" << std::endl;
+        return;
+    }
+    fout << string;
+    fout.close();
+    std::cout<<string;
+}
+
+
