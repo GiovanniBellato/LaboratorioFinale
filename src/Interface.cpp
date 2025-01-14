@@ -29,6 +29,9 @@ void Interface::commandReader(const std::string& command)
 
     std::string cmd, devicename, action, startTime, stopTime, time, word2, word3;
 
+    word2 = "0";
+    word3 = "0";
+
     try{
 
     if(commandVector[0] == "set")
