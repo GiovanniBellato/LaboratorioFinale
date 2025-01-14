@@ -165,16 +165,16 @@ void DomoticSystem::showStatus(){
             totalConsumption += device->getConsumption(currentTime);
         }
     }
-    print ("[" + currentTime.toString() + "] Attualmente il sistema ha prodotto " + std::to_string(totalProduction) + "kWh e consumato " + std::to_string(totalConsumption) + "kWh. Nello specifico: \n");
+    print ("[" + currentTime.toString() + "] Attualmente il sistema ha prodotto " + floatString(totalProduction) + " kWh e consumato " + floatString(totalConsumption) + " kWh. Nello specifico: \n");
     for (const std::shared_ptr<Device>& device : devices)
-        print ("- Il dispositivo " + device->getName() + " ha consumato " + std::to_string(device->getConsumption(currentTime)) + " kWh \n");
+        print ("- Il dispositivo " + device->getName() + " ha consumato " + floatString(device->getConsumption(currentTime)) + " kWh \n");
 }
 
 // Mostra lo stato di un singolo dispositivo
 void DomoticSystem::showDeviceStatus(const std::string& deviceName){
     for (const std::shared_ptr<Device>& device : devices) {
         if (device->getName() == deviceName) {
-            print ("[" + currentTime.toString() + "] Il dispositivo " + deviceName + " ha attualmente consumato " + std::to_string(device->getConsumption(currentTime)) + "kWh. \n");
+            print ("[" + currentTime.toString() + "] Il dispositivo " + deviceName + " ha attualmente consumato " + floatString(device->getConsumption(currentTime)) + " kWh. \n");
             return;
         }
     }
