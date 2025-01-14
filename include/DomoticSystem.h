@@ -63,6 +63,9 @@ public:
 
     //Metodo per ritornare un vettore contenente il nome di tutti i dispositivi
     std::vector<std::string> getDevices();
+
+    //Controlla se è cycle o manual
+    int checkDevice(const std::string&);
 };
 
 #endif // DOMOTIC_SYSTEM_H
