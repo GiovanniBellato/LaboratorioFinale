@@ -17,7 +17,7 @@ public:
     Time(int, int);
 
     //METODI DI ELABORAZIONE OGGETTI TIME
-    
+
     Time getTime();
     void setTime(int hour, int minute);
 
