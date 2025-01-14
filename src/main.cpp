@@ -5,10 +5,11 @@ int main()
 {
 	std::cout<<"**** WARNING : Nell'input degli orari è importante utilizzare il formato hh:mm **** \n"<<std::endl;
 	Interface commandInterface;
-    	std::cout<<"Il programma e' pronto. Procedere inserendo i comandi: "<< std::endl;
+    	std::cout<<"Il programma e' pronto. Procedere inserendo i comandi: \n"<< std::endl;
 try{
     while(true)
     {
+	std::cout<<"<";    
         std::string inputUtente;
         std::getline(std::cin, inputUtente);
 
