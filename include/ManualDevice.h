@@ -8,7 +8,7 @@ private:
     std::string name;    
     int id; //IDENTIFICATIVO UNICO
     float power;    //CONSUMO (O PRODUZIONE) ENERGETICA IN KWH
-    float total_power=0; //CONSUMO TOTALE EFFETTUATO DAL DISPOSITIVO
+    float total_power = 0; //CONSUMO TOTALE EFFETTUATO DAL DISPOSITIVO
     bool isOn = false;  //STATO DEL DISPOSITIVO
     bool started = false; //VARIABILE DI UTILITA'
 
