@@ -8,15 +8,15 @@ DomoticSystem::DomoticSystem(float maxPower)
 	Time t2(18,0);
 	fotovolt_off = t2;
 	ignore_fotovolt = false;
-	    
+
     // INIZIALIZZAZIONE DISPOSITIVI (FORNITI DA TABELLA PDF DEL PROGETTO)
     devices.push_back(std::make_shared<ManualDevice>("Impianto fotovoltaico", 0, -1.5));
-	    
+
     //MANUAL
     devices.push_back(std::make_shared<ManualDevice>("Pompa di calore + termostato", 1, 2.0));
     devices.push_back(std::make_shared<ManualDevice>("Scaldabagno", 2, 1.0));
     devices.push_back(std::make_shared<ManualDevice>("Frigorifero", 3, 0.4));
-	    
+
     //CYCLE
     devices.push_back(std::make_shared<CycleDevice>("Lavatrice", 4, 2.0, Time(1, 50)));
     devices.push_back(std::make_shared<CycleDevice>("Lavastoviglie", 5, 1.5, Time(3, 15)));
