@@ -2,72 +2,62 @@
 #define DOMOTIC_SYSTEM_H
 
 #include <vector>
-#include <memory> // Per smart pointers
-#include <list>
+#include <memory> // PER UTILIZZO SMART POINTERS
+#include <list>   // PER UTILIZZO LISTE
 #include "ManualDevice.h"
 #include "CycleDevice.h"
 
 class DomoticSystem {
 private:
-    std::vector<std::shared_ptr<Device>> devices; // Lista dei dispositivi
-    std::list<std::shared_ptr<Device>> activeDevices; // Lista FIFO dei dispositivi accesi.
-    //in quanto lista di gestione della policy di spegnimento in caso di eccesso della potenza limite,
-    //essa non conterrà il fotovoltaico.
-    const float maxPower = 3.5;    // Limite massimo di potenza dalla rete
-    Time currentTime;  // Orario attuale del sistema
-    Time fotovolt_on; //il fotovoltaico si accende alle 08:00
-    Time fotovolt_off; //il fotovoltaico si spegne alle 18:00
-    bool ignore_fotovolt; //il fotovoltaico può essere spento manualmente
-    //durante il suo normale ciclo di funzionamento
+    std::vector<std::shared_ptr<Device>> devices;   //LISTA DEI DEVICES
+    std::list<std::shared_ptr<Device>> activeDevices;   //LISTA F.I.F.O. DEI DISPOSITIVI ACCESI
+    /* ATTENZIONE : in quanto lista di gestione della policy di spegnimento in caso di eccesso della potenza limite,
+    essa non conterrà il fotovoltaico. */
 
-    // Metodo per verificare la potenza totale assorbita
+    const float maxPower = 3.5;    //LIMITE POTENZA DELLA RETE IN KWH
+    Time currentTime;    //ORARIO DEL SISTEMA 
+
+    Time fotovolt_on;   //ATTENZIONE : IL FOTOVOLTAICO SI ACCENDE AUTOMATICAMENTE ALLE 08:00
+    Time fotovolt_off;   //ATTENZIONE : IL FOTOVOLTAICO SI SPEGNE AUTOMATICAMENTE ALLE 18:00 (PER MANCANZA DI LUCE)
+    bool ignore_fotovolt; //ATTENZIONE : IL FOTOVOLTAICO PUO' ESSERE ACCESO/SPENTO A PIACIMENTO, MA SOLO NELL' ORARIO 08:00-18:00
+
+    //FUNZIONI PER IL : CALCOLO DEL CONSUMO TOTALE - IL RISPETTO DEL LIMITE DI POTENZA DEL SISTEMA
     float calculateTotalPower() const;
-
-    // Metodo per gestire la policy di spegnimento in caso di superamento della potenza massima
     void enforcePowerLimit();
 
 public:
-    // Costruttore
     DomoticSystem(float maxPower);
 
-    //Metodo per mostrare l'orario corrente
+    // MOSTRA ORARIO CORRENTE
     void showTime();
 
-    // Metodo per accendere un dispositivo
+    // ACCENDI/SPEGNI DEVICE
     void turnOnDevice(const std::string& deviceName);
-
-    // Metodo per spegnere un dispositivo
     void turnOffDevice(const std::string& deviceName);
 
-    // Metodo per impostare un timer per un dispositivo
+    // IMPOSTA TIMER ACCENSIONE/SPEGNIMENTO, O RIMUOVILI ,DA UN DEVICE
     void setTimer(const std::string& deviceName, const Time& start, const Time& end);
     void setTimer(const std::string& deviceName, const Time& start);
-
-    // Metodo per rimuovere il timer di un dispositivo
     void removeTimer(const std::string& deviceName);
 
-    // Metodo per aggiornare lo stato dei dispositivi in base all'orario corrente
+    // AGGIORNA I DEVICES ALL'ORARIO ATTUALE
     void updateDevices();
 
-    // Metodo per avanzare il tempo
+    // SETTING DELL'ORARIO ( ATTENZIONE: SI PUO' SOLO AVANZARE NEL TEMPO, CIO' AVVERRA' A SCATTI DI 1 MINUTO )
     void setTime(Time& newTime);
 
-    // Metodo per resettare il sistema
+    // RESET SISTEMA O RESET TEMPORALE DI TUTTI I DEVICES (RESET DEI TIMER IMPLEMENTATO NELLA CLASSE DEI DEVICE)
     void resetSystem();
-
-    // Metodo per mostrare lo stato di tutti i dispositivi
-    void showStatus();
-
-    // Metodo per mostrare lo stato di un singolo dispositivo
-    void showDeviceStatus(const std::string& deviceName);
-
-    //Metodo per ritornare un vettore contenente il nome di tutti i dispositivi
-    std::vector<std::string> getDevices();
-
-    //Resetta il tempo a 00:00 sui dispositivi
     void resetTime();
 
-    //Controlla se è cycle o manual
+    // MOSTRA STATO DI UNO/TUTTI I DISPOSITIVI
+    void showStatus();
+    void showDeviceStatus(const std::string& deviceName);
+
+    //RITORNA UN VETTORE CON I NOMI DI TUTTI I DISPOSITIVI NEL SISTEMA
+    std::vector<std::string> getDevices();
+
+    //CONTROLLO SE IL DISPOSITIVO E' CYCLE O MANUAL (UTILITA' PER INTERFACCIA)
     int checkDevice(const std::string&);
 };
 
