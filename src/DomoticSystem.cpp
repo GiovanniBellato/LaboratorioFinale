@@ -202,3 +202,13 @@ int DomoticSystem::checkDevice(const std::string& deviceName){
 	        	    }}
 	return 0;
 }
+
+void DomoticSystem::resetTime(){
+	    currentTime = Time(0, 0);
+	    for (const std::shared_ptr<Device>& device : devices) {
+	        device->turnOff(currentTime);
+	    }
+	    ignore_fotovolt = false;
+	    for(int i=0; i<15; i++) print("               \n");
+	    print ("[00:00] L'orario attuale è 00:00 \n");
+}
