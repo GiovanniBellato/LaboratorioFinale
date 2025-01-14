@@ -1,0 +1,20 @@
+[00:00] Il dispositivo <Lavatrice> si è acceso. 
+[01:50] Il dispositivo <Lavatrice> si è spento. 
+[08:00] Il dispositivo <Impianto fotovoltaico> si è acceso. 
+[12:00] L'orario attuale è 12:00
+[00:00] Il dispositivo <Lavatrice> si è acceso. 
+[01:50] Il dispositivo <Lavatrice> si è spento. 
+[08:00] Il dispositivo <Impianto fotovoltaico> si è acceso. 
+[12:00] L'orario attuale è 12:00
+[12:00] Il dispositivo Lavatrice ha attualmente consumato 2 kWh. 
+[12:00] Attualmente il sistema ha prodotto 66666666666 kWh e consumato 00002222222 kWh. Nello specifico: 
+- Il dispositivo Impianto fotovoltaico ha consumato -6 kWh 
+- Il dispositivo Pompa di calore + termostato ha consumato 0 kWh 
+- Il dispositivo Scaldabagno ha consumato 0 kWh 
+- Il dispositivo Frigorifero ha consumato 0 kWh 
+- Il dispositivo Lavatrice ha consumato 2 kWh 
+- Il dispositivo Lavastoviglie ha consumato 0 kWh 
+- Il dispositivo Tapparelle elettriche ha consumato 0 kWh 
+- Il dispositivo Forno a microonde ha consumato 0 kWh 
+- Il dispositivo Asciugatrice ha consumato 0 kWh 
+- Il dispositivo Televisore ha consumato 0 kWh 
