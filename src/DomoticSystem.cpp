@@ -191,3 +191,14 @@ std::vector<std::string> DomoticSystem::getDevices() {
     return devicesList;
 }
 
+//Controlla se il device è manual o cycle
+int DomoticSystem::checkDevice(const std::string& deviceName){
+	for (const std::shared_ptr<Device>& device : devices)
+	        if(device->getName() == deviceName){
+	        	if (std::dynamic_pointer_cast<ManualDevice>(device)) {
+	        	        return 1;
+	        	    } else if (std::dynamic_pointer_cast<CycleDevice>(device)) {
+	        	        return 2;
+	        	    }}
+	return 0;
+}
