@@ -6,31 +6,31 @@
 #include <sstream>
 #include <algorithm>
 
-//crea l'oggetto DomoticSystem
+//CREO L'OGGETTO
 DomoticSystem sistemaDomotico(3.5);
 
-Interface::Interface(){  }
+/* ATTENZIONE : SEPPUR INUTILE, IL COSTRUTTORE SEMBRA ESSERE RICHIESTO DA ALCUNI IDEE PER LA CORRETTA COMPILAZIONE */
+Interface::Interface(){ /*NULLA*/ }
 
-//Metodo per l'elaborazione del comando da terminale passato come stringa
 void Interface::commandReader(const std::string& command)
 {
-    //creo una lista dei dispositivi nel sistema
+    //CREO LISTA DEI DISPOSITIVI
     std::vector<std::string> deviceList = sistemaDomotico.getDevices();
 
-    //julio e' un oggetto di istringstream che estrae i dati uno a uno da command
+    //JULIO E' UN OGGETTO CHE ESTRAE I COMANDI DI INPUT UNO A UNO
     std::istringstream julio(command);
 
     std::vector<std::string> commandVector;
     std::string word;
 
-    //creo un vettore che contiene per ogni elemento una parola del comando
+    //VETTORE CHE CONTIENE UNA PAROLA DEL COMANDO FORNITO AD OGNI ELEMENTO
     while (julio >> word) 
      {
         commandVector.push_back(word);
     }
 
+    //DICHIARAZIONE VARIABILI
     std::string cmd, devicename, action, startTime, stopTime, time, word2, word3;
-
     word2 = "0";
     word3 = "0";
 
@@ -43,10 +43,10 @@ void Interface::commandReader(const std::string& command)
         {
         	try{
 
-                //lettura della terza parola (in questo caso un orario)
+                //LETTURA TERZA PAROLA ( IN QUESTO CASO UN ORARIO)
                 time = commandVector[2];
 
-                //controllo se ci sono delle lettere inserite per sbaglio nell'orario
+                //CONTROLLO SE PER ERRORE SONO FINITE DELLE LETTERE NELL'ORARIO
                 if(std::any_of(time.begin(), time.end(), ::isalpha))
                 {
                     throw std::string("L'orario inserito non è valido.\n");
@@ -65,7 +65,7 @@ void Interface::commandReader(const std::string& command)
             try{
                 if(commandVector[1] == "Impianto" || commandVector[1] =="impianto")
                 {
-                    if(commandVector[2] == "fotovoltaico")
+                    if(commandVector[2] == "fotovoltaico" || commandVector[2] == "Fotovoltaico")
                     {
                         devicename = "Impianto fotovoltaico";
                         word2 = commandVector[3];
@@ -95,7 +95,7 @@ void Interface::commandReader(const std::string& command)
                 }
                 else if(commandVector[1] == "Pompa" || commandVector[1] =="pompa")
                 {
-                    if(commandVector[2] == "di" && commandVector[3] == "calore" && commandVector[4] == "+" && commandVector[5] == "termostato")
+                    if(commandVector[2] == "di" && (commandVector[3] == "calore" || commandVector[3] == "Calore") && commandVector[4] == "+" && (commandVector[5] == "termostato" || commandVector[5] == "Termostato"))
                     {
                         devicename = "Pompa di calore + termostato";
                         word2 = commandVector[6];
@@ -107,7 +107,7 @@ void Interface::commandReader(const std::string& command)
                 }
                 else if(commandVector[1] == "Tapparelle" || commandVector[1] =="tapparelle")
                 {
-                    if(commandVector[2] == "elettriche")
+                    if(commandVector[2] == "elettriche" || commandVector[2] == "Elettriche")
                     {
                         devicename = "Tapparelle elettriche";
                         word2 = commandVector[3];
@@ -137,7 +137,7 @@ void Interface::commandReader(const std::string& command)
                 }
                 else if(commandVector[1] == "Forno" || commandVector[1] =="forno")
                 {
-                    if(commandVector[2] == "a" && commandVector[3] == "microonde")
+                    if(commandVector[2] == "a" && (commandVector[3] == "microonde" || commandVector[3] == "Microonde"))
                     {
                         devicename = "Forno a microonde";
                         word2 = commandVector[4];
