@@ -11,8 +11,7 @@ private:
     float total_power;       //CONSUMO TOTALE EFFETTUATO
     bool isOn;               //STATO DEL DISPOSITIVO
     Time timer_on;           //TIMER DI ACCENSIONE
-    bool timer = false;      //STATO DEL TIMER
-    float energyConsumed;   
+    bool timer = false;      //STATO DEL TIMER  
 
 public:
     Device() : timer_on(0, 0) {}
