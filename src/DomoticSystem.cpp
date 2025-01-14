@@ -155,26 +155,42 @@ void DomoticSystem::resetSystem() {
 
 // Mostra lo stato di tutti i dispositivi
 void DomoticSystem::showStatus(){
+    std::ostringstream prod, cons;
+    prod.precision(2); cons.precision(2);
     float totalProduction = 0.0;
     float totalConsumption = 0.0;
-    
+
     for (const std::shared_ptr<Device>& device : devices) {
         if (device->getPower() < 0) {
             totalProduction -= device->getConsumption(currentTime);
         } else {
             totalConsumption += device->getConsumption(currentTime);
         }
+        prod << totalProduction; std::string str1 = prod.str();
+        cons << totalConsumption; std::string str2 = cons.str();
     }
-    print ("[" + currentTime.toString() + "] Attualmente il sistema ha prodotto " + floatString(totalProduction) + " kWh e consumato " + floatString(totalConsumption) + " kWh. Nello specifico: \n");
-    for (const std::shared_ptr<Device>& device : devices)
-        print ("- Il dispositivo " + device->getName() + " ha consumato " + floatString(device->getConsumption(currentTime)) + " kWh \n");
-}
+    prod << totalProduction; std::string str1 = prod.str();
+    cons << totalConsumption; std::string str2 = cons.str();
+    print ("[" + currentTime.toString() + "] Attualmente il sistema ha prodotto " + str1 + " kWh e consumato " + str2 + " kWh. Nello specifico: \n");
+
+    for (const std::shared_ptr<Device>& device : devices){
+    	std::ostringstream get_cons;
+    	get_cons.precision(2);
+    	get_cons << device->getConsumption(currentTime);
+    	std::string str3 = get_cons.str();
+
+        print ("- Il dispositivo " + device->getName() + " ha consumato " + str3 + " kWh \n");
+} }
 
 // Mostra lo stato di un singolo dispositivo
 void DomoticSystem::showDeviceStatus(const std::string& deviceName){
     for (const std::shared_ptr<Device>& device : devices) {
         if (device->getName() == deviceName) {
-            print ("[" + currentTime.toString() + "] Il dispositivo " + deviceName + " ha attualmente consumato " + floatString(device->getConsumption(currentTime)) + " kWh. \n");
+        	std::ostringstream get_cons;
+        	get_cons.precision(2);
+        	get_cons << device->getConsumption(currentTime);
+        	std::string str4 = get_cons.str();
+            print ("[" + currentTime.toString() + "] Il dispositivo " + deviceName + " ha attualmente consumato " + str4 + " kWh. \n");
             return;
         }
     }
