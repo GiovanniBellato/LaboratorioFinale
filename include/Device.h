@@ -11,16 +11,16 @@ private:
     float total_power;       //CONSUMO TOTALE EFFETTUATO
     bool isOn;               //STATO DEL DISPOSITIVO
     Time timer_on;           //TIMER DI ACCENSIONE
-    bool timer = false;      //STATO DEL TIMER  
+    bool timer = false;      //STATO DEL TIMER
 
 public:
     Device() : timer_on(0, 0) {}
     virtual ~Device() = default;
 
     //GESTIONE ACCENSIONE/SPEGNIMENTO E DEL TEMPO
-    virtual void update(Time currentTime) = 0;   
-    virtual void turnOn(Time) = 0;  
-    virtual void turnOff(Time) = 0; 
+    virtual void update(Time currentTime) = 0;
+    virtual void turnOn(Time) = 0;
+    virtual void turnOff(Time) = 0;
 
     //FUNZIONE DI OTTENIMENTO DATI
     virtual std::string getName() const = 0;
