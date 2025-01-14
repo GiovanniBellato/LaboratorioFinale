@@ -7,18 +7,20 @@
 #include <fstream>
 
 class Time{
+
 private:
     int hour;
     int minute;
-public:
 
-    Time() : hour(0), minute(0) {} // Costruttore predefinito
+public:
+    Time() : hour(0), minute(0) {} // COSTRUTTORE PREDEFINITO
     Time(int, int);
 
-    //Metodi di elaborazione oggetti Time
+    //METODI DI ELABORAZIONE OGGETTI TIME
     
     Time getTime();
     void setTime(int hour, int minute);
+
     bool operator > (const Time& time) const;
     bool operator >= (const Time& time) const;
     bool operator < (const Time& time) const;
@@ -27,17 +29,20 @@ public:
     Time operator - (const Time& time) const;
     Time& operator = (const Time& time);
     bool operator == (const Time& time) const;
-    std::string toString() const;
-    float toHour() const;
+
+    std::string toString() const;  //METODO DI RAPPRESENTAZIONE
+    float toHour() const; //CONVERSIONE TIME -> FLOAT
 };
 
-//Metodi di utility
+//FUNZIONI HELPER - <NON COLLEGATE A 'TIME' CONCETTUALMENTE>
 
-//Trasforma una stringa in un oggetto time
+//STRINGA -> OGGETTO DI TIPO TIME
 Time toTime(std::string timeString);
-//Funzione di print (terminale e log)
+
+//FUNZIONE DI STAMPA (TERMINALE E LOG)
 void print (std::string string);
-//Funzione di cast da float a string
+
+//FLOAT -> STRINGA
 std::string floatString (float number);
 
 #endif
