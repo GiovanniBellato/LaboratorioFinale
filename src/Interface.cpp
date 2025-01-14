@@ -12,55 +12,170 @@ Interface::Interface(){
 	//SONO INUTILE, CODICE SPRECATO.
 }
 
+
+
 //Metodo per l'elaborazione del comando da terminale passato come stringa
 void Interface::commandReader(const std::string& command)
 {
+    //creo una lista dei dispositivi nel sistema
     std::vector<std::string> deviceList = sistemaDomotico.getDevices();
-    
+
     //julio e' un oggetto di istringstream che estrae i dati uno a uno da command
     std::istringstream julio(command);
 
+    std::vector<std::string> commandVector;
+    std::string word;
+
+    //creo un vettore che contiene per ogni elemento una parola del comando
+    while (julio >> word) {
+        commandVector.push_back(word);
+    }
+
     std::string cmd, devicename, action, startTime, stopTime, time, word2, word3;
 
-    //lettura della prima parola (in questo caso e' sempre un comando)
-    julio >> cmd;
+    try{
 
-
-    if(cmd == "set")
+    if(commandVector[0] == "set")
     {
-        //lettura della seconda parola
-        julio >> word2;
 
-        if(word2 == "time")
+        if(commandVector[1] == "time")
         {
         	try{
-            //lettura della terza parola (in questo caso un orario)
-            julio >> time;
-            Time targetTime = toTime(time);
-            sistemaDomotico.setTime(targetTime);
+
+                //lettura della terza parola (in questo caso un orario)
+                time = commandVector[2];
+
+                //controllo se ci sono delle lettere inserite per sbaglio nell'orario
+                if(std::any_of(time.begin(), time.end(), ::isalpha))
+                {
+                    throw std::string("L'orario inserito non è valido.\n");
+                }
+                Time targetTime = toTime(time);
+                
+                sistemaDomotico.setTime(targetTime);
+
         	}catch(...){
-        		throw std::string("L orario inserito non è valido.\n");
+        		std::cerr<< "L'orario inserito non è valido." << std::endl;
             }
 
         }
         else
         {
-            //CONTROLLO NOME DEVICE
-            bool found = false;
-            for(int i=0; i<deviceList.size(); i++){
-        		if(devicename.compare(deviceList[i]) == 0)
-                    found = true;
-        	}
-            if(!found)
-                throw std::string("Errore, il device inserito è sconosciuto\n");
+            try{
+                if(commandVector[1] == "Impianto" || commandVector[1] =="impianto")
+                {
+                    if(commandVector[2] == "fotovoltaico")
+                    {
+                        devicename = "Impianto fotovoltaico";
+                        word2 = commandVector[3];
+                        if(commandVector.size() == 5)
+                        {
+                            word3 = commandVector[4];
+                        }
+                    }
+                }
+                else if(commandVector[1] == "Lavatrice" || commandVector[1] =="lavatrice")
+                {
+                    devicename = "Lavatrice";
+                    word2 = commandVector[2];
+                    if(commandVector.size() == 4)
+                        {
+                            word3 = commandVector[3];
+                        }
+                }
+                else if(commandVector[1] == "Lavastoviglie" || commandVector[1] =="lavastoviglie")
+                {
+                    devicename = "Lavastoviglie";
+                    word2 = commandVector[2];
+                    if(commandVector.size() == 4)
+                        {
+                            word3 = commandVector[3];
+                        }
+                }
+                else if(commandVector[1] == "Pompa" || commandVector[1] =="pompa")
+                {
+                    if(commandVector[2] == "di" && commandVector[3] == "calore" && commandVector[4] == "+" && commandVector[5] == "termostato")
+                    {
+                        devicename = "Pompa di calore + termostato";
+                        word2 = commandVector[6];
+                        if(commandVector.size() == 8)
+                        {
+                            word3 = commandVector[7];
+                        }
+                    }
+                }
+                else if(commandVector[1] == "Tapparelle" || commandVector[1] =="tapparelle")
+                {
+                    if(commandVector[2] == "elettriche")
+                    {
+                        devicename = "Tapparelle elettriche";
+                        word2 = commandVector[3];
+                        if(commandVector.size() == 5)
+                        {
+                            word3 = commandVector[4];
+                        }
+                    }
+                }
+                else if(commandVector[1] == "Scaldabagno" || commandVector[1] =="scaldabagno")
+                {
+                    devicename = "Scaldabagno";
+                    word2 = commandVector[2];
+                    if(commandVector.size() == 4)
+                        {
+                            word3 = commandVector[3];
+                        }
+                }
+                else if(commandVector[1] == "Frigorifero" || commandVector[1] =="frigorifero")
+                {
+                    devicename = "Frigorifero";
+                    word2 = commandVector[2];
+                    if(commandVector.size() == 4)
+                        {
+                            word3 = commandVector[3];
+                        }
+                }
+                else if(commandVector[1] == "Forno" || commandVector[1] =="forno")
+                {
+                    if(commandVector[2] == "a" && commandVector[3] == "microonde")
+                    {
+                        devicename = "Forno a microonde";
+                        word2 = commandVector[4];
+                        if(commandVector.size() == 6)
+                        {
+                            word3 = commandVector[5];
+                        }
+                    }
+                }
+                else if(commandVector[1] == "Asciugatrice" || commandVector[1] =="asciugatrice")
+                {
+                    devicename = "Asciugatrice";
+                    word2 = commandVector[2];
+                    if(commandVector.size() == 4)
+                        {
+                            word3 = commandVector[3];
+                        }
 
-            devicename = word2;
-
-            julio >> word3;
-
-            if(word3 == "on" || word3 == "off")
+                }
+                else if(commandVector[1] == "Televisore" || commandVector[1] =="televisore")
+                {
+                    devicename = "Televisore";
+                    word2 = commandVector[2];
+                    if(commandVector.size() == 4)
+                        {
+                            word3 = commandVector[3];
+                        }
+                }
+                else throw std::string("Errore, nel sistema non esiste un dispositivo con questo nome.\n");
+            }catch(...)
             {
-                action = word3;
+                std::cerr<<"Errore, nel sistema non esiste un dispositivo con questo nome."<<std::endl;
+            }
+            
+
+            if(word2 == "on" || word2 == "off")
+            {
+                action = word2;
+                
                 if(action == "on")
                 {
                     sistemaDomotico.turnOnDevice(devicename);
@@ -72,48 +187,158 @@ void Interface::commandReader(const std::string& command)
             }
             else
             {
-                startTime = word3;
+                stopTime="0"; //inizializzo a zero 
+                startTime = word2;
+                stopTime = word3;
 
                 try{
                 Time start_t = toTime(startTime);
 
-                if(julio >> stopTime){
+                if(stopTime != "0")
+                {
                 	Time stop_t = toTime(stopTime);
                 	sistemaDomotico.setTimer(devicename, start_t, stop_t);
-                		}
+                }
                 else sistemaDomotico.setTimer(devicename, start_t);
                 }catch(...){
                 	throw std::string("Orario inserito non valido\n");
                 }
             }
         }
-
-
     }
-    else if (cmd == "rm")
+    else if (commandVector[0] == "rm")
     {
-        julio >> devicename;
-        //CONTROLLO NOME DEVICE
-        for(std::string nome : sistemaDomotico.getDevices()){
-                if(devicename == nome) continue;
-                else {
-                		throw std::string("Errore, il device inserito è sconosciuto\n");
-                	}
-        }
+        try{
+                if(commandVector[1] == "Impianto" || commandVector[1] =="impianto")
+                {
+                    if(commandVector[2] == "fotovoltaico")
+                    {
+                        devicename = "Impianto fotovoltaico";
+                    }
+                }
+                else if(commandVector[1] == "Lavatrice" || commandVector[1] =="lavatrice")
+                {
+                    devicename = "Lavatrice";
+                }
+                else if(commandVector[1] == "Lavastoviglie" || commandVector[1] =="lavastoviglie")
+                {
+                    devicename = "Lavastoviglie";
+                }
+                else if(commandVector[1] == "Pompa" || commandVector[1] =="pompa")
+                {
+                    if(commandVector[2] == "di" && commandVector[3] == "calore" && commandVector[4] == "+" && commandVector[5] == "termostato")
+                    {
+                        devicename = "Pompa di calore + termostato";
+                    }
+                }
+                else if(commandVector[1] == "Tapparelle" || commandVector[1] =="tapparelle")
+                {
+                    if(commandVector[2] == "elettriche")
+                    {
+                        devicename = "Tapparelle elettriche";
+                    }
+                }
+                else if(commandVector[1] == "Scaldabagno" || commandVector[1] =="scaldabagno")
+                {
+                    devicename = "Scaldabagno";
+                }
+                else if(commandVector[1] == "Frigorifero" || commandVector[1] =="frigorifero")
+                {
+                    devicename = "Frigorifero";
+                }
+                else if(commandVector[1] == "Forno" || commandVector[1] =="forno")
+                {
+                    if(commandVector[2] == "a" && commandVector[3] == "microonde")
+                    {
+                        devicename = "Forno a microonde";
+                    }
+                }
+                else if(commandVector[1] == "Asciugatrice" || commandVector[1] =="asciugatrice")
+                {
+                    devicename = "Asciugatrice";
+
+                }
+                else if(commandVector[1] == "Televisore" || commandVector[1] =="televisore")
+                {
+                    devicename = "Televisore";
+                }
+                else throw std::string("Errore, nel sistema non esiste un dispositivo con questo nome.\n");
+            }catch(...)
+            {
+                std::cerr<<"Errore, nel sistema non esiste un dispositivo con questo nome."<<std::endl;
+            }
+
+
         sistemaDomotico.removeTimer(devicename);
 
     }
-    else if (cmd == "show")
+    else if (commandVector[0] == "show")
     {
-        if(julio >> devicename)
+        
+        if(commandVector.size()>1)
         {
-        	//CONTROLLO NOME DEVICE
-        	for(std::string nome : sistemaDomotico.getDevices()){
-        	        	if(devicename == nome) continue;
-        	        	else {
-        	        		throw std::string("Errore, il device inserito è sconosciuto\n");
-        	        		}
-        	    }
+            //controllo che esista il dispositivo e che lo spelling sia giusto
+            try{
+                if(commandVector[1] == "Impianto" || commandVector[1] =="impianto")
+                {
+                    if(commandVector[2] == "fotovoltaico")
+                    {
+                        devicename = "Impianto fotovoltaico";
+                    }
+                }
+                else if(commandVector[1] == "Lavatrice" || commandVector[1] =="lavatrice")
+                {
+                    devicename = "Lavatrice";
+                }
+                else if(commandVector[1] == "Lavastoviglie" || commandVector[1] =="lavastoviglie")
+                {
+                    devicename = "Lavastoviglie";
+                }
+                else if(commandVector[1] == "Pompa" || commandVector[1] =="pompa")
+                {
+                    if(commandVector[2] == "di" && commandVector[3] == "calore" && commandVector[4] == "+" && commandVector[5] == "termostato")
+                    {
+                        devicename = "Pompa di calore + termostato";
+                    }
+                }
+                else if(commandVector[1] == "Tapparelle" || commandVector[1] =="tapparelle")
+                {
+                    if(commandVector[2] == "elettriche")
+                    {
+                        devicename = "Tapparelle elettriche";
+                    }
+                }
+                else if(commandVector[1] == "Scaldabagno" || commandVector[1] =="scaldabagno")
+                {
+                    devicename = "Scaldabagno";
+                }
+                else if(commandVector[1] == "Frigorifero" || commandVector[1] =="frigorifero")
+                {
+                    devicename = "Frigorifero";
+                }
+                else if(commandVector[1] == "Forno" || commandVector[1] =="forno")
+                {
+                    if(commandVector[2] == "a" && commandVector[3] == "microonde")
+                    {
+                        devicename = "Forno a microonde";
+                    }
+                }
+                else if(commandVector[1] == "Asciugatrice" || commandVector[1] =="asciugatrice")
+                {
+                    devicename = "Asciugatrice";
+
+                }
+                else if(commandVector[1] == "Televisore" || commandVector[1] =="televisore")
+                {
+                    devicename = "Televisore";
+                }
+                else throw std::string("Errore, nel sistema non esiste un dispositivo con questo nome.\n");
+            }catch(...)
+            {
+                std::cerr<<"Errore, nel sistema non esiste un dispositivo con questo nome."<<std::endl;
+            }
+
+
         	sistemaDomotico.showDeviceStatus(devicename);
         }
         else
@@ -122,7 +347,7 @@ void Interface::commandReader(const std::string& command)
 
         }
     }
-    else if (cmd == "reset")
+    else if (commandVector[0] == "reset")
     {
         julio >> word2;
 
@@ -151,7 +376,13 @@ void Interface::commandReader(const std::string& command)
     {
     	throw std::string("Il comando inserito non e' valido.\n");
     }
+    
+    }catch(...)
+    {
+    std::cerr<<"Il comando inserito non e' valido."<<std::endl;
+    }
 }
+
 
 
 

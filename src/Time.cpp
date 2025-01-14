@@ -123,3 +123,4 @@ Time toTime(std::string timeString)
 
     Time temp(hours, minutes);
     return temp;
+}

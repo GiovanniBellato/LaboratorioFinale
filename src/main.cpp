@@ -1,9 +1,9 @@
 #include <iostream>
-#include "Interface.h"
+#include "../include/Interface.h"
 
 int main()
 {
-	std::cout<<"----- Nell'input degli orari è importante utilizzare il formato hh:mm -----"<<std::endl;
+	std::cout<<"\n \n ----- Nell'input degli orari è importante utilizzare il formato hh:mm ----- \n \n"<<std::endl;
 	Interface commandInterface;
     	std::cout<<"Il programma e' pronto. Procedere inserendo i comandi: "<< std::endl;
 try{
