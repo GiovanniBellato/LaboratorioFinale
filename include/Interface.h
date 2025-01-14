@@ -2,6 +2,7 @@
 #define INTERFACE_H
 
 #include <string>
+#include <algorithm>
 
 class Interface 
 {
