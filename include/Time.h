@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <string>
+#include <fstream>
 
 class Time{
 private:
@@ -26,9 +27,11 @@ public:
     bool operator == (const Time& time) const;
     std::string toString() const;
     float toHour() const;
-
 };
 
+//Trasforma una stringa in un oggetto time
 Time toTime(std::string timeString);
+//Funzione di print (terminale e log)
+void print (std::string string);
 
 #endif
