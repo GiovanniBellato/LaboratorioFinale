@@ -118,4 +118,15 @@ void print (std::string string){
     std::cout<<string;
 }
 
+std::string floatString (float number){
+    std::string temp = std::to_string(number);
+    std::string str = temp.substr(0, 3);
+    //Il numero risultante nella stringa deve avere una sola cifra decimale
+    int index = 2;
+    while(str.at(index-1) != '.' && index < temp.length()){
+        str += temp.at(index +1);
+        index ++;
+    }
+    return str;
+}
 
