@@ -1,6 +1,6 @@
 #include "../include/CycleDevice.h"
 
-void CycleDevice::turnOn(Time current_time){  
+void CycleDevice::turnOn(Time current_time){
     if(!isOn){
     	started = true;
         start = current_time;
@@ -9,7 +9,7 @@ void CycleDevice::turnOn(Time current_time){
     }
 }
 
-void CycleDevice::turnOff(Time current_time){  
+void CycleDevice::turnOff(Time current_time){
     if(isOn){
         isOn = false;
         Time delta = current_time - start;
@@ -20,7 +20,7 @@ void CycleDevice::turnOff(Time current_time){
     }
 }
 
-void CycleDevice::update(Time current_time){  
+void CycleDevice::update(Time current_time){
     if(timer && current_time >= timer_on)
         turnOn(timer_on);
     if(isOn)
@@ -57,4 +57,3 @@ float CycleDevice::getConsumption(Time current_time){
         return (power * duration.toHour());
     return 0;
 }
-
