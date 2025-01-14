@@ -5,15 +5,15 @@
 
 class CycleDevice : public Device {
 private:
-    std::string name;    
+    std::string name;
     int id;   //IDENTIFICATIVO UNICO
     float power;    //CONSUMO (O PRODUZIONE) ENERGETICO
     bool isOn = false;  //STATO DEL DISPOSITIVO
     float total_power = 0;  //CONSUMO TOTALE EFFETTUATO
 
     //VARIABILI PER LA GESTIONE DEI TIMER & DURATA CICLO
-    Time start;         
-    Time duration;   
+    Time start;
+    Time duration;
     Time timer_on;
     bool timer = false;
     bool started = false;
