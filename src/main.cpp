@@ -9,7 +9,7 @@ int main()
 try{
     while(true)
     {
-	std::cout<<"<";    
+	std::cout<<">";    
         std::string inputUtente;
         std::getline(std::cin, inputUtente);
 
