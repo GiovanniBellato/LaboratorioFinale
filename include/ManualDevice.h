@@ -5,7 +5,7 @@
 
 class ManualDevice:public Device{
 private:
-    std::string name;    
+    std::string name;
     int id; //IDENTIFICATIVO UNICO
     float power;    //CONSUMO (O PRODUZIONE) ENERGETICA IN KWH
     float total_power = 0; //CONSUMO TOTALE EFFETTUATO DAL DISPOSITIVO
@@ -28,7 +28,7 @@ public:
     void update(Time current_time) override;   //AGGIORNA IL DISPOSITIVO AL NUOVO 'TEMPO' DATO
 
     //FUNZIONI PER LA GESTIONE DEI TIMER
-    void setTimerOn(Time, Time) override;  
+    void setTimerOn(Time, Time) override;
     void setTimerOff(Time, Time) override;
     void removeTimer(Time) override;
     void reset();
