@@ -44,7 +44,7 @@ void CycleDevice::update(Time current_time){  // Aggiorna lo stato del dispositi
 void CycleDevice::setTimerOn(Time current_time, Time time){
     timer_on = time;
     timer = true;
-    print ("[" + current_time.toString() + "] Impostato un timer di accesione nel dispositivo <" + name + ">" + " alle <" + current_time.toString() + "> \n");
+    print ("[" + current_time.toString() + "] Impostato un timer di accesione nel dispositivo <" + name + ">" + " alle <" + timer_on.toString() + "> \n");
 }
 
 void CycleDevice::reset(){
