@@ -3,7 +3,7 @@
 
 int main()
 {
-	std::cout<<"\n \n ----- Nell'input degli orari è importante utilizzare il formato hh:mm ----- \n \n"<<std::endl;
+	std::cout<<"**** WARNING : Nell'input degli orari è importante utilizzare il formato hh:mm **** \n"<<std::endl;
 	Interface commandInterface;
     	std::cout<<"Il programma e' pronto. Procedere inserendo i comandi: "<< std::endl;
 try{
@@ -14,7 +14,7 @@ try{
 
         if(inputUtente == "exit")
         {
-            std::cout<< "Chiusura del programma. Arrivederci!" << std::endl;
+            std::cout<< "Chiusura del programma. Arrivederci!\n" << std::endl;
             break;
         }
         commandInterface.commandReader(inputUtente);
