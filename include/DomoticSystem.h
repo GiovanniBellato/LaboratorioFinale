@@ -2,12 +2,10 @@
 #define DOMOTIC_SYSTEM_H
 
 #include <vector>
-#include <string>
 #include <memory> // Per smart pointers
 #include <list>
 #include "ManualDevice.h"
 #include "CycleDevice.h"
-#include "Time.h"
 
 class DomoticSystem {
 private:
