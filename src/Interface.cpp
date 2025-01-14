@@ -9,6 +9,7 @@
 //crea l'oggetto DomoticSystem
 DomoticSystem sistemaDomotico(3.5);
 
+Interface::Interface(){  }
 
 //Metodo per l'elaborazione del comando da terminale passato come stringa
 void Interface::commandReader(const std::string& command)
@@ -356,8 +357,7 @@ void Interface::commandReader(const std::string& command)
 
         if(commandVector[1] == "time")
         {
-            //TODO:RESET TIME
-            std::cout<<"WORK IN PROGRESS."<<std::endl;
+            sistemaDomotico.resetTime();
 
         }
         else if (commandVector[1] == "timers")
