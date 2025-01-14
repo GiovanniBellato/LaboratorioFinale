@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 //crea l'oggetto DomoticSystem
 DomoticSystem sistemaDomotico(3.5);
@@ -195,8 +196,12 @@ void Interface::commandReader(const std::string& command)
 
                 if(stopTime != "0")
                 {
+                    if(sistemaDomotico.checkDevice(devicename) != 1) {
+                        throw std::string("Non è possibile impostare un timer di spegnimento su un CycleDevice.\n");
+                    }else{
                 	Time stop_t = toTime(stopTime);
                 	sistemaDomotico.setTimer(devicename, start_t, stop_t);
+                    }
                 }
                 else sistemaDomotico.setTimer(devicename, start_t);
                 }catch(...){
